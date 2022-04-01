@@ -150,21 +150,6 @@
             measurementId: "G-92DD6N64CX"
         };
 
-        import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-        });
-
         // Initialize Firebase
         //const app = initializeApp(firebaseConfig);
         //const analytics = getAnalytics(app);
@@ -172,7 +157,7 @@
     </script>
 
     <!-- My code -->
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
     
   </body>
 </html>

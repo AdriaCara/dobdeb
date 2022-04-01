@@ -1,11 +1,14 @@
-const loginForm = document.querySelector('#loginForm');
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const loginEmail = document.querySelector('#loginEmail').value;
-    const loginPassword = document.querySelector('#loginPassword').value;
-
-    auth1.
-        createUserWithEmailAndPassword(loginEmail, loginPassword)
+const auth = getAuth();
+createUserWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    // ...
+})
+.catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
 });
