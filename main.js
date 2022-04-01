@@ -5,4 +5,7 @@ loginForm.addEventListener('submit', (e) => {
     
     const loginEmail = document.querySelector('#loginEmail').value;
     const loginPassword = document.querySelector('#loginPassword').value;
+
+    auth1.
+        createUserWithEmailAndPassword(loginEmail, loginPassword)
 });
