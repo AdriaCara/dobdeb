@@ -1,14 +1,8 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-const auth = getAuth();
-createUserWithEmailAndPassword(auth, email, password)
-.then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-})
-.catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-});
+ui.start('#firebaseui-auth-container', {
+    signInOptions: [
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ],
+    // Other config options...
+  });
