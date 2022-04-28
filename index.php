@@ -25,15 +25,19 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login">Inicia sesion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#register">Registrate</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cierra sesion</a>
-                </li>
+                <?php
+                    echo "<li class='nav-item'>
+                    <a class='nav-link' href='#' data-bs-toggle='modal' data-bs-target='#login'>Inicia sesion</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='#' data-bs-toggle='modal' data-bs-target='#register'>Registrate</a>
+                    </li>"
+                ?>
+                <?php
+                    echo"<li class='nav-item'>
+                    <a class='nav-link' href='#'>Cierra sesion</a>
+                    </li>"
+                ?>
             </ul>
         </div>
         </div>
@@ -102,9 +106,11 @@
     </div>
 
     <!-- Body -->
-    <div class="container">
+    <?php
 
-    </div>
+        require 'bodyIndex.php';
+    
+    ?>
 
     <!-- Footer -->
     <div class="container">
