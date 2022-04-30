@@ -1,31 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
     <script type="module" src="./main.js"></script>
     <script type="module" src="./auth.js"></script>
 
     <title>dobdeb</title>
-  </head>
-  <body>
+</head>
+
+<body>
+
+    <?php
+
+        $servidor = "127.0.0.1";
+        $usuari = "root";
+        $pass = "";
+        $dbname = "dobdeb";
+
+        $conn = new mysqli($servidor, $usuari, $pass, $dbname);
+
+        if ($conn->connect_error) {
+            die("No es possible connectar :".$conn->connect_error);
+        }
+
+    ?>
 
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">Menu</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <?php
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <?php
                     echo "<li class='nav-item'>
                     <a class='nav-link' href='#' data-bs-toggle='modal' data-bs-target='#login'>Inicia sesion</a>
                     </li>
@@ -33,13 +52,13 @@
                         <a class='nav-link' href='#' data-bs-toggle='modal' data-bs-target='#register'>Registrate</a>
                     </li>"
                 ?>
-                <?php
+                    <?php
                     echo"<li class='nav-item'>
                     <a class='nav-link' href='#'>Cierra sesion</a>
                     </li>"
                 ?>
-            </ul>
-        </div>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -58,7 +77,8 @@
                         </div>
                         <br />
                         <div class="form-group">
-                            <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña" required>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña"
+                                required>
                         </div>
                         <br />
                         <button type="submit" class="btn btn-primary">
@@ -81,7 +101,8 @@
                 <div class="modal-body">
                     <form id="loginForm">
                         <div class="form-group">
-                            <input type="text" id="loginEmail" class="form-control" placeholder="NombreUsuario" required>
+                            <input type="text" id="loginEmail" class="form-control" placeholder="NombreUsuario"
+                                required>
                         </div>
                         <br />
                         <div class="form-group">
@@ -89,11 +110,13 @@
                         </div>
                         <br />
                         <div class="form-group">
-                            <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña" required>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña"
+                                required>
                         </div>
                         <br />
                         <div class="form-group">
-                            <input type="password" id="loginPassword" class="form-control" placeholder="Confirmar Contraseña" required>
+                            <input type="password" id="loginPassword" class="form-control"
+                                placeholder="Confirmar Contraseña" required>
                         </div>
                         <br />
                         <button type="submit" class="btn btn-primary">
@@ -115,32 +138,38 @@
     <!-- Footer -->
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top fixed-bottom">
-          <p class="col-md-4 mb-0 text-muted">© 2022 dobdeb</p>
-      
-          <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-          </a>
-      
-          <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-          </ul>
+            <p class="col-md-4 mb-0 text-muted">© 2022 dobdeb</p>
+
+            <a href="/"
+                class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
         </footer>
-      </div>
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
-    
-  </body>
+
+</body>
+
 </html>
