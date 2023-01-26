@@ -13,6 +13,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("changeDescription").classList.add("hidden");
     document.getElementById("newAlert").classList.add("hidden");
     document.getElementById("dropdownAlert").classList.remove("hidden");
+    getHome();
     // User is signed in
     console.log("Usuario conectado");
   } else {
