@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#postContent {
+    margin: 0;
+    padding: 0;
+}
+
+#postContent li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.styleModalContent {
+    width: 35rem;
+}
+
+#doAPostButton:hover,#changePhotoButton:hover, #changeDescriptionButton:hover, #newAlertButton:hover {
+    color: aliceblue;
+}
+
+#logOutButton:hover {
+    color: #000000;
+    background: #ffffff;
+}
+
+.hidden {
+    display: none;
+}
+
+.imgGallery {
+    width: 17rem;
+    margin: auto;
+    margin-top: 1rem;
+    border: 0.2rem solid rgb(28, 86, 10);
+    border-radius: 4px;
+}
+
+#imageAlert {
+    width: 3rem;
+    border-radius: 1rem;
+}
+
+.marginTop {
+    margin-top: 0.7rem;
+}
+
+.marginBot {
+    margin-bottom: 1rem;
+}
