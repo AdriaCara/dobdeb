@@ -5,6 +5,7 @@ const documentContent = document.getElementById('postContent');
 const documentAlert = document.getElementById('alertContent');
 const docPost = firebase.firestore().collection('posts').orderBy("time", "desc");
 const docUser = firebase.firestore().collection('users').orderBy("name", "asc");
+const docUserR = firebase.firestore().collection('users').orderBy("time", "desc");
 const docAlert = firebase.firestore().collection('alerts').orderBy("time", "desc");
 let emails;
 
@@ -443,6 +444,152 @@ function getProfile(email) {
     });
 }
 // Get myProfile
+
+// Get home
+function getHome() {
+    getHomeMostPoster('poster');
+    getHomeMostPoster('new');
+}
+// Get home
+
+// Get home most poster
+function getHomeMostPoster(filter) {
+    let count = 0;
+    docUserR.get()
+    .then(snapshot => {
+        snapshot.docs.forEach(doc => {
+            const user = doc.data();
+            getNicknameMostPoster()
+            .then(nicknames => {
+                const nickname = getNicknameMostRepeated(nicknames);
+                count++;
+                if ((user.nickname==nickname && filter=='poster' ) || (count==1 && filter=='new')) {
+                    const user = doc.data();
+
+                    const homeCard = document.createElement('div');
+                    homeCard.classList.add('card');
+                    homeCard.classList.add('border-primary');
+                    homeCard.classList.add('m-5');
+                    homeCard.classList.add('bg-dark');
+                    homeCard.classList.add('text-light');
+                    homeCard.style.maxWidth = '30rem';
+                    homeCard.style.maxHeight = '30rem';
+        
+                    const homeImage = document.createElement('img');
+                    if (user.hasOwnProperty("photo")) {
+                        var path = user.photo;
+                        homeImage.src = path;
+                        homeImage.classList.add('imgGallery');
+                        homeImage.classList.add("card-img-top");
+                        homeImage.style.maxWidth = '10rem'
+                    }
+        
+                    const homeCardBody = document.createElement('div');
+                    homeCardBody.classList.add('card-body');
+        
+                    const homeTitle = document.createElement('h5');
+                    homeTitle.textContent = user.name;
+                    homeTitle.classList.add('card-title');
+                    homeTitle.classList.add('bg-transparent');
+                    homeTitle.classList.add('border-danger');
+                    homeTitle.classList.add('fs-2');
+        
+                    const homeText = document.createElement('p');
+                    homeText.textContent = `${user.description}`;
+                    homeText.classList.add('card-text');
+        
+                    const homeFooter = document.createElement('div');
+                    homeFooter.classList.add('card-footer');
+        
+                    const homeTime = document.createElement('small');
+                    const homeDate = user.time.toDate();
+                    const postDateFormat = homeDate.getDate() + '/' + (homeDate.getMonth() + 1) + '/' + homeDate.getFullYear() + ' ' + homeDate.getHours() + ':' + homeDate.getMinutes() + ':' + homeDate.getSeconds();
+                    homeTime.textContent = `Here since: ${postDateFormat}`;
+                    homeTime.classList.add('card-footer');
+                    homeTime.classList.add('bg-transparent');
+                    homeTime.classList.add('text-muted');
+        
+                    const homeProfileButton = document.createElement('button');
+                    homeProfileButton.textContent = "Profile";
+                    homeProfileButton.classList.add('btn');
+                    homeProfileButton.classList.add('btn-primary');
+                    homeProfileButton.classList.add('col-6');
+                    homeProfileButton.classList.add('mx-auto');
+                    homeProfileButton.type = 'submit';
+                    homeProfileButton.onclick = (event) => {
+                        event.preventDefault();
+                        changeContent('anotherProfile');
+                        getProfile(user.email);
+                    }
+        
+                    homeCardBody.appendChild(homeTitle);
+                    homeCardBody.appendChild(homeText);
+        
+                    homeFooter.appendChild(homeTime);
+                    homeFooter.appendChild(homeProfileButton);
+        
+                    homeCard.appendChild(homeImage);
+                    homeCard.appendChild(homeCardBody);
+                    homeCard.appendChild(homeFooter);
+        
+                    documentContent.appendChild(homeCard);
+                }
+            })
+            .catch(error => {
+                console.log('Error getting documents', error);
+            });
+        });
+    })
+    .catch(error => {
+        console.log('Error getting documents', error);
+    });
+}
+// Get home most poster
+
+// Get nickname more poster 
+function getNicknameMostPoster() {
+    return new Promise((resolve, reject) => {
+        let nicknames = [];
+        docPost.get()
+        .then(snapshot => {
+            snapshot.docs.forEach(doc => {
+                const post = doc.data();
+                nicknames.push(post.nickname);
+            });
+            resolve(nicknames);
+        })
+        .catch(error => {
+            reject(error);
+        });
+    });
+}
+
+// Get nickname most repeated
+function getNicknameMostRepeated(nicknames) {
+    let nameCounts = {};
+    let mostFrequentName = "";
+    let maxCount = 0;
+
+    // Create an object with the count of each name
+    nicknames.forEach(function(name) {
+        if (nameCounts[name]) {
+          nameCounts[name]++;
+        } else {
+          nameCounts[name] = 1;
+        }
+    });
+  
+    // Iterate through the object to find the most frequent name
+    for (let name in nameCounts) {
+        if (nameCounts[name] > maxCount) {
+            mostFrequentName = name;
+            maxCount = nameCounts[name];
+        }
+    }
+  
+    return mostFrequentName;
+}
+// Get nickname most repeated
 
 // Get nickname actual user
 function getNicknameActualUser(){
