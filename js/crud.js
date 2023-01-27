@@ -17,9 +17,6 @@ getAllEmailUsers()
     console.log("Error getting emails: ", error);
 });
 
-showAlerts();
-
-
 // Create functions
 
 // Create user
@@ -446,14 +443,14 @@ function getProfile(email) {
 // Get myProfile
 
 // Get home
-function getHome() {
-    getHomeMostPoster('poster');
-    getHomeMostPoster('new');
+function getHome(actualUserConnected) {
+    getHomeMostPoster('poster', actualUserConnected);
+    getHomeMostPoster('new', actualUserConnected);
 }
 // Get home
 
 // Get home most poster
-function getHomeMostPoster(filter) {
+function getHomeMostPoster(filter, actualUserConnected) {
     let count = 0;
     docUserR.get()
     .then(snapshot => {
@@ -509,24 +506,27 @@ function getHomeMostPoster(filter) {
                     homeTime.classList.add('bg-transparent');
                     homeTime.classList.add('text-muted');
         
-                    const homeProfileButton = document.createElement('button');
-                    homeProfileButton.textContent = "Profile";
-                    homeProfileButton.classList.add('btn');
-                    homeProfileButton.classList.add('btn-primary');
-                    homeProfileButton.classList.add('col-6');
-                    homeProfileButton.classList.add('mx-auto');
-                    homeProfileButton.type = 'submit';
-                    homeProfileButton.onclick = (event) => {
-                        event.preventDefault();
-                        changeContent('anotherProfile');
-                        getProfile(user.email);
-                    }
-        
                     homeCardBody.appendChild(homeTitle);
                     homeCardBody.appendChild(homeText);
         
                     homeFooter.appendChild(homeTime);
-                    homeFooter.appendChild(homeProfileButton);
+                    if (actualUserConnected) {
+                        console.log(actualUserConnected);
+                        const homeProfileButton = document.createElement('button');
+                        homeProfileButton.textContent = "Profile";
+                        homeProfileButton.classList.add('btn');
+                        homeProfileButton.classList.add('btn-primary');
+                        homeProfileButton.classList.add('col-6');
+                        homeProfileButton.classList.add('mx-auto');
+                        homeProfileButton.type = 'submit';
+                        homeProfileButton.onclick = (event) => {
+                            event.preventDefault();
+                            changeContent('anotherProfile');
+                            getProfile(user.email);
+                        }
+
+                        homeFooter.appendChild(homeProfileButton);
+                    } 
         
                     homeCard.appendChild(homeImage);
                     homeCard.appendChild(homeCardBody);
