@@ -1,16 +1,1 @@
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBYUZN-g2xqhWhtXmrwShOrQcX6yMnQtOQ",
-  authDomain: "dobdeb-411d9.firebaseapp.com",
-  projectId: "dobdeb-411d9",
-  storageBucket: "dobdeb-411d9.appspot.com",
-  messagingSenderId: "438938008418",
-  appId: "1:438938008418:web:37af6a77fc9727f6ef4a3b",
-  measurementId: "G-2GYHKC5H8E"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-// Reference to the Firebase database
-const db = firebase.firestore();
+const _0x146859=_0x464e;(function(_0x114490,_0x43db51){const _0x1b953e=_0x464e,_0x3f593b=_0x114490();while(!![]){try{const _0x5757ac=-parseInt(_0x1b953e(0x184))/0x1+-parseInt(_0x1b953e(0x18e))/0x2+parseInt(_0x1b953e(0x186))/0x3+parseInt(_0x1b953e(0x187))/0x4*(-parseInt(_0x1b953e(0x185))/0x5)+parseInt(_0x1b953e(0x18f))/0x6+-parseInt(_0x1b953e(0x183))/0x7+parseInt(_0x1b953e(0x18a))/0x8;if(_0x5757ac===_0x43db51)break;else _0x3f593b['push'](_0x3f593b['shift']());}catch(_0x25b0a4){_0x3f593b['push'](_0x3f593b['shift']());}}}(_0x1f1f,0x78b92));const firebaseConfig={'apiKey':_0x146859(0x189),'authDomain':_0x146859(0x181),'projectId':_0x146859(0x18d),'storageBucket':_0x146859(0x188),'messagingSenderId':_0x146859(0x18b),'appId':'1:438938008418:web:37af6a77fc9727f6ef4a3b','measurementId':_0x146859(0x18c)};firebase['initializeApp'](firebaseConfig);function _0x1f1f(){const _0x405fef=['6153560pKUfXM','890078rQxuKA','1502720xJPyUk','623403uBdXHe','12TEvsvN','dobdeb-411d9.appspot.com','AIzaSyBYUZN-g2xqhWhtXmrwShOrQcX6yMnQtOQ','21488904DgCXBs','438938008418','G-2GYHKC5H8E','dobdeb-411d9','1046492BVDNJE','4767624iYzFZb','dobdeb-411d9.firebaseapp.com','firestore'];_0x1f1f=function(){return _0x405fef;};return _0x1f1f();}function _0x464e(_0x1ee7c5,_0x27e242){const _0x1f1f01=_0x1f1f();return _0x464e=function(_0x464e46,_0x4f082d){_0x464e46=_0x464e46-0x181;let _0x47bdea=_0x1f1f01[_0x464e46];return _0x47bdea;},_0x464e(_0x1ee7c5,_0x27e242);}const db=firebase[_0x146859(0x182)]();

@@ -511,7 +511,6 @@ function getHomeMostPoster(filter, actualUserConnected) {
         
                     homeFooter.appendChild(homeTime);
                     if (actualUserConnected) {
-                        console.log(actualUserConnected);
                         const homeProfileButton = document.createElement('button');
                         homeProfileButton.textContent = "Profile";
                         homeProfileButton.classList.add('btn');
