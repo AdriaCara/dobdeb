@@ -1,67 +1,103 @@
-const changeToGallery = document.getElementById("galleryButton");
-const changeToPosts = document.getElementById("postsButton");
-const changeToProfile = document.getElementById('myProfileButton');
-
 const titleDocument = document.getElementById("titleContent");
-const doAPost = document.getElementById("doAPost");
-const changePhoto = document.getElementById("changePhoto");
-const changeDescription = document.getElementById("changeDescription");
-const posts = document.getElementById("posts");
-const gallery = document.getElementById("gallery");
-const myProfile = document.getElementById("myProfile");
-const changeClass = document.getElementById("postContent");
-
-changeToGallery.addEventListener("submit", e => {
-    e.preventDefault();
-    changeContent('gallery');
-});
-
-changeToPosts.addEventListener("submit", e => {
-    e.preventDefault();
-    changeContent('posts');
-});
-
-changeToProfile.addEventListener("submit", e => {
-    e.preventDefault();
-    changeContent('myProfile');
-});
 
 function changeContent(documentShow) {
-    doAPost.classList.add("hidden");
-    changePhoto.classList.add("hidden");
-    changeDescription.classList.add("hidden");
-    posts.classList.add("hidden");
-    gallery.classList.add("hidden");
-    myProfile.classList.add("hidden");
     deleteElementsPost();
+    deleteElementsNavbar();
 
     if (documentShow=='gallery') {
         titleDocument.textContent = 'Gallery';
-        changePhoto.classList.remove("hidden");
-        changeDescription.classList.remove("hidden");
-        posts.classList.remove("hidden");
-        myProfile.classList.remove("hidden");
-        changeClass.classList.add("row");
+        homeLi.appendChild(homeButton);
+        navbar.appendChild(homeLi);
+        profileForm.appendChild(profileButton);
+        profileLi.appendChild(profileForm);
+        navbar.appendChild(profileLi);
+        postForm.appendChild(postButton);
+        postLi.appendChild(postForm);
+        navbar.appendChild(postLi);
         getGallery();
     } else if (documentShow=='posts') {
         titleDocument.textContent = 'Recent posts';
-        doAPost.classList.remove("hidden");
-        gallery.classList.remove("hidden");
-        myProfile.classList.remove("hidden");
-        changeClass.classList.remove("row");
+        homeLi.appendChild(homeButton);
+        navbar.appendChild(homeLi);
+        profileForm.appendChild(profileButton);
+        profileLi.appendChild(profileForm);
+        navbar.appendChild(profileLi);
+        galleryForm.appendChild(galleryButton);
+        galleryLi.appendChild(galleryForm);
+        navbar.appendChild(galleryLi);
+        doAPostLi.appendChild(doAPostButton);
+        navbar.appendChild(doAPostLi);
         getPosts('all');
     } else if (documentShow=='anotherProfile') {
-        posts.classList.remove("hidden");
-        gallery.classList.remove("hidden");
-        myProfile.classList.remove("hidden");
-    } else {
+        homeLi.appendChild(homeButton);
+        navbar.appendChild(homeLi);
+        profileForm.appendChild(profileButton);
+        profileLi.appendChild(profileForm);
+        navbar.appendChild(profileLi);
+        galleryForm.appendChild(galleryButton);
+        galleryLi.appendChild(galleryForm);
+        navbar.appendChild(galleryLi);
+        postForm.appendChild(postButton);
+        postLi.appendChild(postForm);
+        navbar.appendChild(postLi);
+    } else if (documentShow=='myProfile') {
         const email = firebase.auth().currentUser.email;
-
-        changePhoto.classList.remove("hidden");
-        changeDescription.classList.remove("hidden");
-        posts.classList.remove("hidden");
-        gallery.classList.remove("hidden");
-        changeClass.classList.remove("row");
+        homeLi.appendChild(homeButton);
+        navbar.appendChild(homeLi);
+        postForm.appendChild(postButton);
+        postLi.appendChild(postForm);
+        navbar.appendChild(postLi);  
+        galleryForm.appendChild(galleryButton);
+        galleryLi.appendChild(galleryForm);
+        navbar.appendChild(galleryLi); 
+        changePhotoLi.appendChild(changePhotoButton);
+        navbar.appendChild(changePhotoLi);
+        changeDescriptionLi.appendChild(changeDescriptionButton);
+        navbar.appendChild(changeDescriptionLi);
         getProfile(email);
+    } else {
+        titleDocument.textContent = 'Home';
+        profileForm.appendChild(profileButton);
+        profileLi.appendChild(profileForm);
+        navbar.appendChild(profileLi);
+        postForm.appendChild(postButton);
+        postLi.appendChild(postForm);
+        navbar.appendChild(postLi);
+        galleryForm.appendChild(galleryButton);
+        galleryLi.appendChild(galleryForm);
+        navbar.appendChild(galleryLi);
+        getHome(true);
     }
+
+    button.appendChild(image);
+    dropdown.appendChild(button);
+    dropdownItem.appendChild(p);
+    alertContent.appendChild(dropdownItem);
+    dropdown.appendChild(alertContent);
+    alert.appendChild(dropdown);
+
+    navbar.appendChild(alert);
+
+    getRolActualUser().then(rol => {
+        if (rol==0) {
+            const newAlertLi = document.createElement('li');
+            newAlertLi.id = 'newAlertLi';
+            newAlertLi.classList.add('nav-item');
+            newAlertLi.classList.add('marginTop');
+        
+            const newAlertButton = document.createElement('button');
+            newAlertButton.textContent = 'New alert';
+            newAlertButton.id = 'newAlertButton';
+            newAlertButton.classList.add('btn');
+            newAlertButton.classList.add('btn-outline-info');
+            newAlertButton.setAttribute('data-bs-toggle', 'modal');
+            newAlertButton.setAttribute('data-bs-target', '#newAlertModal');
+        
+            newAlertLi.appendChild(newAlertButton);
+            navbar.appendChild(newAlertLi);
+        }
+        logOutLi.appendChild(logOutButton);
+        navbar.appendChild(logOutLi);
+        showAlerts();
+    });
 }
