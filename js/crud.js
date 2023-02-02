@@ -2,7 +2,7 @@
 const contentForm = document.getElementById('post-form');
 const contentInput = document.getElementById('post-input');
 const documentContent = document.getElementById('postContent');
-const documentAlert = document.getElementById('alertContent');
+const navbar = document.getElementById('navbar');
 const docPost = firebase.firestore().collection('posts').orderBy("time", "desc");
 const docUser = firebase.firestore().collection('users').orderBy("name", "asc");
 const docUserR = firebase.firestore().collection('users').orderBy("time", "desc");
@@ -200,12 +200,6 @@ function getPosts(nickname) {
             if (post.nickname==nickname || nickname=='all') {
                 documentContent.appendChild(postDiv);
             }
-            
-            getRolActualUser().then(rol => {
-                if (rol==0) {
-                    document.getElementById("newAlert").classList.remove("hidden");;
-                }
-            });
         });
     })
     .catch(error => {
@@ -300,6 +294,7 @@ function getGallery() {
 
 // Get Alerts
 function showAlerts() {
+    const documentAlert = document.getElementById('alertContent');
     let times=0;
     docAlert.get()
     .then(snapshot => {
@@ -726,6 +721,14 @@ function deleteElementsPost(){
 }
 // Delete posts
 
+// Delete navbar
+function deleteElementsNavbar(){
+    while (navbar.firstChild) {
+       navbar.firstChild.remove()
+   }
+}
+// Delete navbar
+
 // Delete posts
 function deleteElementsPost(){
     while (documentContent.firstChild) {
@@ -736,9 +739,10 @@ function deleteElementsPost(){
 
 // Delete alerts
 function deleteElementsAlert(){
-   while (documentAlert.firstChild) {
-       documentAlert.firstChild.remove();
-  }
+    const documentAlert = document.getElementById('alertContent');
+    while (documentAlert.firstChild) {
+        documentAlert.firstChild.remove();
+    }
 }
 // Delete alerts
 

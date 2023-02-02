@@ -1,7 +1,6 @@
-const doAPostButton = document.getElementById("doAPost");
 const doThePost = document.getElementById("doAPost-form");
 
-doAPostButton.addEventListener("click", e => {
+function doAPostFucntion() {
     const userDoAPost = firebase.auth().currentUser;
     const emailDoAPost = userDoAPost.email;
 
@@ -15,7 +14,7 @@ doAPostButton.addEventListener("click", e => {
             }
         });
     });
-});
+}
 
 doThePost.addEventListener("submit", e => {
     e.preventDefault();

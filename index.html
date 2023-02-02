@@ -17,28 +17,8 @@
   <body id="body" class="bg-secondary">
     <header class="bg-dark">
       <nav>
-        <ul class="d-flex justify-content-center nav nav-pills">
-          <li id="home" class="nav-item marginTop"><button disabled class="btn btn-outline-secondary" href="#">Home</button></li>
-          <li id="myProfile" class="nav-item marginTop hidden"><form id="myProfileButton"><button type="submit" class="btn btn-outline-primary">Profile</button></form></li>
-          <li id="posts" class="nav-item marginTop"><form id="postsButton"><button type="submit" class="btn btn-outline-success">Posts</button></form></li>
-          <li id="doAPost" class="nav-item marginTop hidden"><button id="doAPostButton" class="btn btn-outline-info" type="button" data-bs-toggle="modal" data-bs-target="#postModal">Do a post</button></li>
-          <li id="changePhoto" class="nav-item marginTop hidden"><button id="changePhotoButton" class="btn btn-outline-info" type="button" data-bs-toggle="modal" data-bs-target="#changePhotoModal">Change Photo</button></li>
-          <li id="changeDescription" class="nav-item marginTop hidden"><button id="changeDescriptionButton" class="btn btn-outline-warning" type="button" data-bs-toggle="modal" data-bs-target="#changeDescriptionModal">Change Description</button></li>
-          <li id="login" class="nav-item marginTop"><button id="loginButton" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button></li>
-          <li id="register" class="nav-item marginTop"><button id="registerButton" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button></li>
-          <li id="gallery" class="nav-item marginTop hidden"><form id="galleryButton"><button type="submit" class="btn btn-outline-danger">Gallery</button></form></li>
-          <li id="alert" class="nav-item mt-0 hidden"></li>
-            <div class="dropdown ms-5">
-              <button class="btn" type="button" id="dropdownAlert" data-bs-toggle="dropdown" aria-expanded="false">
-                <img id="imageAlert" class="btn-img bg-secondary" src="https://firebasestorage.googleapis.com/v0/b/dobdeb-411d9.appspot.com/o/alerts%2Falert.png?alt=media&token=b4c52418-2052-49f4-96dc-07e4b907fc4a" alt="Image">
-              </button>
-              <ul id="alertContent" class="dropdown-menu" aria-labelledby="dropdownAlert">
-                <li class="dropdown-item d-flex justify-content-center"><p class="mt-3 text-muted">EMPTY</p></li>
-              </ul>
-            </div>
-          </li>
-          <li id="newAlert" class="nav-item marginTop hidden"><button id="newAlertButton" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#newAlertModal">New alert</button></li>
-          <li id="logOut" class="nav-item marginTop"><button id="logOutButton" class="btn btn-outline-light" onclick="logOut();">Log out</button></li>
+        <ul id="navbar" class="d-flex justify-content-center nav nav-pills">
+          <li>Error</li>
         </ul>
       </nav>
     </header>
