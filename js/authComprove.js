@@ -9,8 +9,8 @@ profileForm.id = 'myProfileButton';
 const profileButton = document.createElement('button');
 profileButton.textContent = 'Profile';
 profileButton.type = 'button';
-profileButton.classList.add('btn');
-profileButton.classList.add('btn-outline-primary');
+profileButton.classList.add('buttonStyle');
+profileButton.setAttribute('style', "--clr:#0D6EFD");
 profileButton.setAttribute('onclick', "changeContent('myProfile');");
 
 const homeLi = document.createElement('li');
@@ -20,8 +20,8 @@ homeLi.id = 'home';
 
 const homeButton = document.createElement('button');
 homeButton.textContent = 'Home';
-homeButton.classList.add('btn');
-homeButton.classList.add('btn-outline-secondary');
+homeButton.classList.add('buttonStyle');
+homeButton.setAttribute('style', "--clr:#676723");
 homeButton.setAttribute('onclick', "changeContent('home');");
 
 const postLi = document.createElement('li');
@@ -35,8 +35,8 @@ postForm.id = 'postsButton';
 const postButton = document.createElement('button');
 postButton.textContent = 'Posts';
 postButton.type = 'button';
-postButton.classList.add('btn');
-postButton.classList.add('btn-outline-success');
+postButton.classList.add('buttonStyle');
+postButton.setAttribute('style', "--clr:#2af499");
 postButton.setAttribute('onclick', "changeContent('posts');");
 
 const doAPostLi = document.createElement('li');
@@ -48,8 +48,8 @@ const doAPostButton = document.createElement('button');
 doAPostButton.textContent = 'Do a post';
 doAPostButton.id = 'doAPostButton';
 doAPostButton.type = 'button';
-doAPostButton.classList.add('btn');
-doAPostButton.classList.add('btn-outline-info');
+doAPostButton.classList.add('buttonStyle');
+doAPostButton.setAttribute('style', "--clr:#b1f45f");
 doAPostButton.setAttribute('data-bs-toggle', 'modal');
 doAPostButton.setAttribute('data-bs-target', '#postModal');
 doAPostButton.setAttribute('onclick', 'doAPostFucntion();');
@@ -63,8 +63,8 @@ const changePhotoButton = document.createElement('button');
 changePhotoButton.textContent = 'Change Photo';
 changePhotoButton.id = 'changePhotoButton';
 changePhotoButton.type = 'button';
-changePhotoButton.classList.add('btn');
-changePhotoButton.classList.add('btn-outline-info');
+changePhotoButton.classList.add('buttonStyle');
+changePhotoButton.setAttribute('style', "--clr:#b1f45f");
 changePhotoButton.setAttribute('data-bs-toggle', 'modal');
 changePhotoButton.setAttribute('data-bs-target', '#changePhotoModal');
 
@@ -77,8 +77,8 @@ const changeDescriptionButton = document.createElement('button');
 changeDescriptionButton.textContent = 'Change Description';
 changeDescriptionButton.id = 'changeDescriptionButton';
 changeDescriptionButton.type = 'button';
-changeDescriptionButton.classList.add('btn');
-changeDescriptionButton.classList.add('btn-outline-warning');
+changeDescriptionButton.classList.add('buttonStyle');
+changeDescriptionButton.setAttribute('style', "--clr:#b1f45f");
 changeDescriptionButton.setAttribute('data-bs-toggle', 'modal');
 changeDescriptionButton.setAttribute('data-bs-target', '#changeDescriptionModal');
 
@@ -94,8 +94,8 @@ const galleryButton = document.createElement('button');
 galleryButton.textContent = 'Gallery';
 galleryButton.id = 'registerButton';
 galleryButton.type = 'button';
-galleryButton.classList.add('btn');
-galleryButton.classList.add('btn-outline-danger');
+galleryButton.classList.add('buttonStyle');
+galleryButton.setAttribute('style', "--clr:#ff9328");
 galleryButton.setAttribute('onclick', "changeContent('gallery');");
 
 const logOutLi = document.createElement('li');
@@ -106,8 +106,8 @@ logOutLi.classList.add('marginTop');
 const logOutButton = document.createElement('button');
 logOutButton.textContent = 'Log out';
 logOutButton.id = 'logOutButton';
-logOutButton.classList.add('btn');
-logOutButton.classList.add('btn-outline-light');
+logOutButton.classList.add('buttonStyle');
+logOutButton.setAttribute('style', "--clr:#f65956");
 logOutButton.setAttribute('onclick', 'logOut();');
 
 const alert = document.createElement('li');
@@ -164,8 +164,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     loginButton.textContent = 'Login';
     loginButton.id = 'loginButton';
     loginButton.type = 'button';
-    loginButton.classList.add('btn');
-    loginButton.classList.add('btn-outline-primary');
+    loginButton.classList.add('buttonStyle');
+    loginButton.setAttribute('style', "--clr:#f65956");
     loginButton.setAttribute('data-bs-toggle', 'modal');
     loginButton.setAttribute('data-bs-target', '#loginModal');
 
@@ -181,8 +181,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     registerButton.textContent = 'Register';
     registerButton.id = 'registerButton';
     registerButton.type = 'button';
-    registerButton.classList.add('btn');
-    registerButton.classList.add('btn-outline-primary');
+    registerButton.classList.add('buttonStyle');
+    registerButton.setAttribute('style', "--clr:#f65956");
     registerButton.setAttribute('data-bs-toggle', 'modal');
     registerButton.setAttribute('data-bs-target', '#registerModal');
 

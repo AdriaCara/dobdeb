@@ -33,15 +33,6 @@ nav ul li {
     width: 35rem;
 }
 
-#doAPostButton:hover,#changePhotoButton:hover, #changeDescriptionButton:hover, #newAlertButton:hover {
-    color: aliceblue;
-}
-
-#logOutButton:hover {
-    color: #000000;
-    background: #ffffff;
-}
-
 .hidden {
     display: none;
 }
@@ -60,9 +51,53 @@ nav ul li {
 }
 
 .marginTop {
-    margin-top: 0.7rem;
+    margin-top: 1rem;
 }
 
 .marginBot {
     margin-bottom: 1rem;
+}
+
+.buttonStyle {
+    position: relative;
+    background: #00000000;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    font-weight: 400;
+    padding: 0.1rem 0.3rem;
+    transition: 0.5s;
+    flex-direction: row;
+    border-radius: 0.5rem;
+    border-color: #fbfbfb;
+}
+
+.buttonStyle:hover {
+    letter-spacing: 0.3rem;
+    box-shadow: 0 0 1rem var(--clr);
+    border-color: var(--clr);
+    color: var(--clr);
+}
+
+.buttonStyle:before {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+}
+
+.buttonStyle {
+    position: relative;
+    z-index: 1;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+    background: #ffffff00;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: #2e1334
 }

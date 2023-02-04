@@ -88,8 +88,8 @@ function changeContent(documentShow) {
             const newAlertButton = document.createElement('button');
             newAlertButton.textContent = 'New alert';
             newAlertButton.id = 'newAlertButton';
-            newAlertButton.classList.add('btn');
-            newAlertButton.classList.add('btn-outline-info');
+            newAlertButton.classList.add('buttonStyle');
+            newAlertButton.setAttribute('style', "--clr:blue");
             newAlertButton.setAttribute('data-bs-toggle', 'modal');
             newAlertButton.setAttribute('data-bs-target', '#newAlertModal');
         
