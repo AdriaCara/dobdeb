@@ -149,7 +149,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     // User is signed in
     changeContent('home');
-    deleteElementsPost();
     console.log("Usuario conectado");
   } else {
     // No user is signed in

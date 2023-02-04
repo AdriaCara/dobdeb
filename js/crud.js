@@ -7,6 +7,7 @@ const docPost = firebase.firestore().collection('posts').orderBy("time", "desc")
 const docUser = firebase.firestore().collection('users').orderBy("name", "asc");
 const docUserR = firebase.firestore().collection('users').orderBy("time", "desc");
 const docAlert = firebase.firestore().collection('alerts').orderBy("time", "desc");
+const docForm = firebase.firestore().collection('forms').orderBy("time", "desc");
 let emails;
 
 getAllEmailUsers()
@@ -441,6 +442,7 @@ function getProfile(email) {
 function getHome(actualUserConnected) {
     getHomeMostPoster('poster', actualUserConnected);
     getHomeMostPoster('new', actualUserConnected);
+    getHomeForm(actualUserConnected);
 }
 // Get home
 
@@ -636,6 +638,74 @@ async function getAllEmailUsers() {
 
 // Get all emails
 
+// Get Form
+function getHomeForm(actualUserConnected) {
+    docForm.get()
+    .then(snapshot => {
+        snapshot.docs.forEach(doc => {
+            const form = doc.data();
+
+            const formDiv = document.createElement('div');
+            
+            const formForm = document.createElement('form');
+            formForm.id = 'form';
+
+            const formFormDiv = document.createElement('div');
+
+            const formH3 = document.createElement('h3');
+            formH3.textContent = form.title;
+
+            const formH4 = document.createElement('h4');
+            formH4.textContent = form.description;
+
+            const formDivDiv = document.createElement('div');
+            formDivDiv.setAttribute('style', 'text-align: left;');
+
+            const formProgress = document.createElement('progress');
+            formProgress.max = '100';
+            const percent = (form.yes.length * 100)/(form.no.length + form.yes.length);
+            formProgress.value = `${percent}`;
+
+            const formDivDivDiv = document.createElement('div');
+            formDivDivDiv.id = 'form-button';
+
+            formDivDiv.appendChild(formProgress);
+            formFormDiv.appendChild(formH3);
+            formFormDiv.appendChild(formH4);
+            formFormDiv.appendChild(formDivDiv);
+            formForm.appendChild(formFormDiv);
+            if (actualUserConnected) {
+                getEmailActualUser().then(email => {
+                    if (!form.yes.includes(email) && !form.no.includes(email)) {
+                        const formButtonNo = document.createElement('div');
+
+                        formButtonNo.textContent = 'NO';
+                        formButtonNo.classList.add('buttonStyle');
+                        formButtonNo.setAttribute('type', 'button');
+                        formButtonNo.setAttribute('style', '--clr:#b92727');
+                        formButtonNo.setAttribute('onclick', `updateForm('no', '${doc.id}');`);
+            
+                        const formButtonSi = document.createElement('div');
+                        formButtonSi.textContent = 'SI';
+                        formButtonSi.classList.add('buttonStyle');
+                        formButtonSi.setAttribute('type', 'button');
+                        formButtonSi.setAttribute('style', '--clr:#b1f45f');
+                        formButtonSi.setAttribute('onclick', `updateForm('si', '${doc.id}');`);
+
+                        formDivDivDiv.appendChild(formButtonSi);
+                        formDivDivDiv.appendChild(formButtonNo);
+                        formForm.appendChild(formDivDivDiv);
+                    }
+                });
+            }
+            formDiv.appendChild(formForm);
+            documentContent.appendChild(formDiv);
+        });
+    });
+    
+}
+// Get Form
+
 // Get functions
 
 
@@ -707,6 +777,47 @@ function editPost(title, text, id) {
     });
 }
 // Update post
+
+// Update form
+function updateForm(option, id) {
+    docForm.get()
+    .then(snapshot => {
+        snapshot.docs.forEach(doc => {
+            const form = doc.data();
+            let emails = [];
+            getEmailActualUser().then(email => {
+                if (option == 'si') {
+                    emails = form.yes;
+                    emails.push(email);
+                    db.collection("forms").doc(id).update({
+                        yes: emails,
+                    })
+                    .then(function() {
+                        console.log("Post editado con ID: ", id);
+                        changeContent('home');
+                    })
+                    .catch(function(error) {
+                        console.error("Error al editar el post: ", error);
+                    });
+                } else {
+                    emails = form.no;
+                    emails.push(email);
+                    db.collection("forms").doc(id).update({
+                        no: emails,
+                    })
+                    .then(function() {
+                        console.log("Post editado con ID: ", id);
+                        changeContent('home');
+                    })
+                    .catch(function(error) {
+                        console.error("Error al editar el post: ", error);
+                    });
+                }
+            });
+        });
+    });
+}
+// Update form
 
 // Edit functions
 
