@@ -663,7 +663,7 @@ function uploadPhoto(file, email) {
                     // doc.id es el ID del documento
                     collectionRef.doc(doc.id).update({photo: downloadURL});
                     deletePostsUser();
-                    getGallery();
+                    changeContent('myProfile');
                 });
             });
         });
@@ -683,7 +683,7 @@ function updateDescription(text, email) {
             // doc.id es el ID del documento
             collectionRef.doc(doc.id).update({description: text});
             deleteElementsPost();
-            getGallery();
+            changeContent('myProfile');
         });
     });
 }
