@@ -646,7 +646,9 @@ function getHomeForm(actualUserConnected) {
             const form = doc.data();
 
             const formDiv = document.createElement('div');
-            
+            formDiv.style.paddingLeft = '10rem';
+            formDiv.style.paddingRight = '10rem';
+
             const formForm = document.createElement('form');
             formForm.id = 'form';
 
@@ -679,14 +681,14 @@ function getHomeForm(actualUserConnected) {
                     if (!form.yes.includes(email) && !form.no.includes(email)) {
                         const formButtonNo = document.createElement('div');
 
-                        formButtonNo.textContent = 'NO';
+                        formButtonNo.textContent = form.optionOne;
                         formButtonNo.classList.add('buttonStyle');
                         formButtonNo.setAttribute('type', 'button');
                         formButtonNo.setAttribute('style', '--clr:#b92727');
                         formButtonNo.setAttribute('onclick', `updateForm('no', '${doc.id}');`);
             
                         const formButtonSi = document.createElement('div');
-                        formButtonSi.textContent = 'SI';
+                        formButtonSi.textContent = form.optionTwo;
                         formButtonSi.classList.add('buttonStyle');
                         formButtonSi.setAttribute('type', 'button');
                         formButtonSi.setAttribute('style', '--clr:#b1f45f');
@@ -696,6 +698,27 @@ function getHomeForm(actualUserConnected) {
                         formDivDivDiv.appendChild(formButtonNo);
                         formForm.appendChild(formDivDivDiv);
                     }
+
+                    getRolActualUser().then(rol => {
+                        if (rol==0) {
+        
+                            const stadisticsDivH3No = document.createElement('h3');
+                            stadisticsDivH3No.textContent = `${form.optionOne}: ${form.no.length}`;
+        
+                            const stadisticsDivH3Yes = document.createElement('h3');
+                            stadisticsDivH3Yes.textContent = `${form.optionTwo}: ${form.yes.length}`;
+        
+                            getAllEmailUsers().then(users => { 
+                                const percentTotal = ((form.no.length + form.yes.length) * 100)/users.length;;
+                                const stadisticsDivH3Percent = document.createElement('h3');
+                                stadisticsDivH3Percent.textContent = `Percent of total votes: ${percentTotal}%`;
+        
+                                formForm.appendChild(stadisticsDivH3No);
+                                formForm.appendChild(stadisticsDivH3Yes);
+                                formForm.appendChild(stadisticsDivH3Percent);
+                            });
+                        }
+                    });
                 });
             }
             formDiv.appendChild(formForm);
