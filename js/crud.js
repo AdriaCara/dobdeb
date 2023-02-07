@@ -118,6 +118,14 @@ function getPosts(nickname) {
             postNickname.classList.add('text-start');
             postNickname.classList.add('fw-bold');
             postNickname.classList.add('m-2');
+            getRolWithEmail(post.nickname).then(rol => {
+                if (rol==2) {
+                    const postVeryfied = document.createElement('p');
+                    postVeryfied.textContent = '👾';
+                    postNickname.appendChild(postVeryfied);
+                    postNickname.style.fontFamily = 'papyrus';
+                }
+            });
 
             const postButtonEdit = document.createElement('button');
             postButtonEdit.textContent = "Edit";
@@ -222,8 +230,6 @@ function getGallery() {
             galleryCard.classList.add('m-5');
             galleryCard.classList.add('bg-dark');
             galleryCard.classList.add('text-light');
-            galleryCard.style.maxWidth = '30rem';
-            galleryCard.style.maxHeight = '30rem';
 
             const galleryImage = document.createElement('img');
             if (user.hasOwnProperty("photo")) {
@@ -243,13 +249,13 @@ function getGallery() {
             galleryTitle.classList.add('bg-transparent');
             galleryTitle.classList.add('border-danger');
             galleryTitle.classList.add('fs-2');
+            galleryTitle.style.fontFamily = 'papyrus';
 
             const galleryText = document.createElement('p');
             galleryText.textContent = `${user.description}`;
             galleryText.classList.add('card-text');
 
             const galleryFooter = document.createElement('div');
-            galleryFooter.classList.add('card-footer');
 
             const galleryTime = document.createElement('small');
             const postDate = user.time.toDate();
@@ -390,12 +396,19 @@ function getProfile(email) {
             galleryTitle.classList.add('bg-transparent');
             galleryTitle.classList.add('border-danger');
             galleryTitle.classList.add('fs-2');
+            if (user.rol==2) {
+                const galleryVeryfied = document.createElement('p');
+                galleryVeryfied.textContent = '👾';
+                galleryTitle.appendChild(galleryVeryfied);
+                galleryTitle.style.fontFamily = 'papyrus';
+            }
 
             const galleryImage = document.createElement('img');
             if (user.hasOwnProperty("photo")) {
                 var path = user.photo;
                 galleryImage.src = path;
                 galleryImage.classList.add("imgGallery");
+                galleryDiv.appendChild(galleryImage);
             }
 
             const galleryText = document.createElement('p');
@@ -411,7 +424,6 @@ function getProfile(email) {
             galleryTime.classList.add('text-danger');
             galleryTime.classList.add('text-muted');
 
-            galleryDiv.appendChild(galleryImage);
             galleryDiv.appendChild(galleryTitle);
             galleryDiv.appendChild(galleryText);
             galleryDiv.appendChild(galleryTime);
@@ -487,13 +499,18 @@ function getHomeMostPoster(filter, actualUserConnected) {
                     homeTitle.classList.add('bg-transparent');
                     homeTitle.classList.add('border-danger');
                     homeTitle.classList.add('fs-2');
+                    if (user.rol==2) {
+                        // const homeVeryfied = document.createElement('p');
+                        // homeVeryfied.textContent = '👾';
+                        // homeTitle.appendChild(homeVeryfied);
+                        homeTitle.style.fontFamily = 'papyrus';
+                    }
         
                     const homeText = document.createElement('p');
                     homeText.textContent = `${user.description}`;
                     homeText.classList.add('card-text');
         
                     const homeFooter = document.createElement('div');
-                    homeFooter.classList.add('card-footer');
         
                     const homeTime = document.createElement('small');
                     const homeDate = user.time.toDate();
@@ -608,6 +625,16 @@ function getRolActualUser(){
     });
 }
 // Get rol actual user
+
+// Get rol
+function getRolWithEmail(nickname){
+    // Actualizar la descripcion en el documento específico
+    const collectionRef = firebase.firestore().collection('users');
+    return collectionRef.where("nickname", "==", nickname).get().then(function(querySnapshot) {
+        return querySnapshot.docs[0].data().rol;
+    });
+}
+// Get rol
 
 // Get email actual user
 function getEmailActualUser(){
