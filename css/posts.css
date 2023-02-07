@@ -1,0 +1,17 @@
+.card{
+    padding: 5rem;
+    border-radius: 10rem;
+    border-color: #fff;
+    max-width: 30rem;
+    max-height: max-content;
+}
+
+.card img {
+    border-radius: 10rem;
+    border-color: #fff;
+    max-height: 20rem;
+}
+
+.card button {
+    
+}

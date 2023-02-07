@@ -118,6 +118,14 @@ function getPosts(nickname) {
             postNickname.classList.add('text-start');
             postNickname.classList.add('fw-bold');
             postNickname.classList.add('m-2');
+            getRolWithEmail(post.nickname).then(rol => {
+                if (rol==2) {
+                    const postVeryfied = document.createElement('p');
+                    postVeryfied.textContent = '👾';
+                    postNickname.appendChild(postVeryfied);
+                    postNickname.style.fontFamily = 'papyrus';
+                }
+            });
 
             const postButtonEdit = document.createElement('button');
             postButtonEdit.textContent = "Edit";
@@ -222,8 +230,6 @@ function getGallery() {
             galleryCard.classList.add('m-5');
             galleryCard.classList.add('bg-dark');
             galleryCard.classList.add('text-light');
-            galleryCard.style.maxWidth = '30rem';
-            galleryCard.style.maxHeight = '30rem';
 
             const galleryImage = document.createElement('img');
             if (user.hasOwnProperty("photo")) {
@@ -243,13 +249,13 @@ function getGallery() {
             galleryTitle.classList.add('bg-transparent');
             galleryTitle.classList.add('border-danger');
             galleryTitle.classList.add('fs-2');
+            galleryTitle.style.fontFamily = 'papyrus';
 
             const galleryText = document.createElement('p');
             galleryText.textContent = `${user.description}`;
             galleryText.classList.add('card-text');
 
             const galleryFooter = document.createElement('div');
-            galleryFooter.classList.add('card-footer');
 
             const galleryTime = document.createElement('small');
             const postDate = user.time.toDate();
@@ -390,12 +396,19 @@ function getProfile(email) {
             galleryTitle.classList.add('bg-transparent');
             galleryTitle.classList.add('border-danger');
             galleryTitle.classList.add('fs-2');
+            if (user.rol==2) {
+                const galleryVeryfied = document.createElement('p');
+                galleryVeryfied.textContent = '👾';
+                galleryTitle.appendChild(galleryVeryfied);
+                galleryTitle.style.fontFamily = 'papyrus';
+            }
 
             const galleryImage = document.createElement('img');
             if (user.hasOwnProperty("photo")) {
                 var path = user.photo;
                 galleryImage.src = path;
                 galleryImage.classList.add("imgGallery");
+                galleryDiv.appendChild(galleryImage);
             }
 
             const galleryText = document.createElement('p');
@@ -411,7 +424,6 @@ function getProfile(email) {
             galleryTime.classList.add('text-danger');
             galleryTime.classList.add('text-muted');
 
-            galleryDiv.appendChild(galleryImage);
             galleryDiv.appendChild(galleryTitle);
             galleryDiv.appendChild(galleryText);
             galleryDiv.appendChild(galleryTime);
@@ -466,8 +478,6 @@ function getHomeMostPoster(filter, actualUserConnected) {
                     homeCard.classList.add('m-5');
                     homeCard.classList.add('bg-dark');
                     homeCard.classList.add('text-light');
-                    homeCard.style.maxWidth = '30rem';
-                    homeCard.style.maxHeight = '30rem';
         
                     const homeImage = document.createElement('img');
                     if (user.hasOwnProperty("photo")) {
@@ -487,13 +497,18 @@ function getHomeMostPoster(filter, actualUserConnected) {
                     homeTitle.classList.add('bg-transparent');
                     homeTitle.classList.add('border-danger');
                     homeTitle.classList.add('fs-2');
+                    if (user.rol==2) {
+                        // const homeVeryfied = document.createElement('p');
+                        // homeVeryfied.textContent = '👾';
+                        // homeTitle.appendChild(homeVeryfied);
+                        homeTitle.style.fontFamily = 'papyrus';
+                    }
         
                     const homeText = document.createElement('p');
                     homeText.textContent = `${user.description}`;
                     homeText.classList.add('card-text');
         
                     const homeFooter = document.createElement('div');
-                    homeFooter.classList.add('card-footer');
         
                     const homeTime = document.createElement('small');
                     const homeDate = user.time.toDate();
@@ -609,6 +624,16 @@ function getRolActualUser(){
 }
 // Get rol actual user
 
+// Get rol
+function getRolWithEmail(nickname){
+    // Actualizar la descripcion en el documento específico
+    const collectionRef = firebase.firestore().collection('users');
+    return collectionRef.where("nickname", "==", nickname).get().then(function(querySnapshot) {
+        return querySnapshot.docs[0].data().rol;
+    });
+}
+// Get rol
+
 // Get email actual user
 function getEmailActualUser(){
     const email = firebase.auth().currentUser.email;
@@ -646,7 +671,9 @@ function getHomeForm(actualUserConnected) {
             const form = doc.data();
 
             const formDiv = document.createElement('div');
-            
+            formDiv.style.paddingLeft = '10rem';
+            formDiv.style.paddingRight = '10rem';
+
             const formForm = document.createElement('form');
             formForm.id = 'form';
 
@@ -679,14 +706,14 @@ function getHomeForm(actualUserConnected) {
                     if (!form.yes.includes(email) && !form.no.includes(email)) {
                         const formButtonNo = document.createElement('div');
 
-                        formButtonNo.textContent = 'NO';
+                        formButtonNo.textContent = form.optionOne;
                         formButtonNo.classList.add('buttonStyle');
                         formButtonNo.setAttribute('type', 'button');
                         formButtonNo.setAttribute('style', '--clr:#b92727');
                         formButtonNo.setAttribute('onclick', `updateForm('no', '${doc.id}');`);
             
                         const formButtonSi = document.createElement('div');
-                        formButtonSi.textContent = 'SI';
+                        formButtonSi.textContent = form.optionTwo;
                         formButtonSi.classList.add('buttonStyle');
                         formButtonSi.setAttribute('type', 'button');
                         formButtonSi.setAttribute('style', '--clr:#b1f45f');
@@ -696,6 +723,27 @@ function getHomeForm(actualUserConnected) {
                         formDivDivDiv.appendChild(formButtonNo);
                         formForm.appendChild(formDivDivDiv);
                     }
+
+                    getRolActualUser().then(rol => {
+                        if (rol==0) {
+        
+                            const stadisticsDivH3No = document.createElement('h3');
+                            stadisticsDivH3No.textContent = `${form.optionOne}: ${form.no.length}`;
+        
+                            const stadisticsDivH3Yes = document.createElement('h3');
+                            stadisticsDivH3Yes.textContent = `${form.optionTwo}: ${form.yes.length}`;
+        
+                            getAllEmailUsers().then(users => { 
+                                const percentTotal = ((form.no.length + form.yes.length) * 100)/users.length;;
+                                const stadisticsDivH3Percent = document.createElement('h3');
+                                stadisticsDivH3Percent.textContent = `Percent of total votes: ${percentTotal}%`;
+        
+                                formForm.appendChild(stadisticsDivH3No);
+                                formForm.appendChild(stadisticsDivH3Yes);
+                                formForm.appendChild(stadisticsDivH3Percent);
+                            });
+                        }
+                    });
                 });
             }
             formDiv.appendChild(formForm);
