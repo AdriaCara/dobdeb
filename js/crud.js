@@ -478,8 +478,6 @@ function getHomeMostPoster(filter, actualUserConnected) {
                     homeCard.classList.add('m-5');
                     homeCard.classList.add('bg-dark');
                     homeCard.classList.add('text-light');
-                    homeCard.style.maxWidth = '30rem';
-                    homeCard.style.maxHeight = '30rem';
         
                     const homeImage = document.createElement('img');
                     if (user.hasOwnProperty("photo")) {
