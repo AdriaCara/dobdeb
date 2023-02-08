@@ -3,7 +3,7 @@
     border-radius: 10rem;
     border-color: #fff;
     max-width: 30rem;
-    max-height: max-content;
+    height: max-content;
 }
 
 .card img {
