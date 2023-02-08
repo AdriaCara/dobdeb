@@ -3,7 +3,7 @@
     border-radius: 10rem;
     border-color: #fff;
     max-width: 30rem;
-    max-height: max-content;
+    height: max-content;
 }
 
 .card img {
@@ -14,4 +14,13 @@
 
 .card button {
     
+}
+
+.disable-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently supported by any browser but < IE9 */
 }
