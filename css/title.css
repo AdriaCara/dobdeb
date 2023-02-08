@@ -1,7 +1,9 @@
-#titleContent {
+#titleDiv {
+    width: 20rem;
     text-align: center;
-    margin-top: 2rem;
     color: #fff;
-    text-shadow: -1rem 1rem 0.4rem #fff;
-    border-color: #fff;
+    background: #212529;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 1rem;
 }
