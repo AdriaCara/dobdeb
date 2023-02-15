@@ -9,7 +9,7 @@ registerForm.addEventListener("submit", e => {
     .get()
     .then(function(querySnapshot) {
         if (querySnapshot.size > 0) {
-        alert("This nickname is already registered");
+            alert("This nickname is already registered");
         } else {
             const nicknameRegister = document.getElementById("nicknameRegister").value;
             const emailRegister = document.getElementById("emailRegister").value;
@@ -18,10 +18,10 @@ registerForm.addEventListener("submit", e => {
             firebase.auth().createUserWithEmailAndPassword(emailRegister, passwordRegister)
             .then(function(user) {
                 createUser(nicknameRegister, nameUserRegister, emailRegister);
-                console.log("Usuario registrado", user);
+                getFeedback("Register", `Registered with exit ${nicknameRegister}!`, true);
             })
             .catch(function(error) {
-                console.log("Error al registrar usuario: ", error);
+                getFeedback("Register", error, false);
             });
         }
     });

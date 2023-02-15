@@ -15,7 +15,7 @@ getAllEmailUsers()
     emails = result;
 })
 .catch(error => {
-    console.log("Error getting emails: ", error);
+    getFeedback("Error", error.message, false);
 });
 
 // Create functions
@@ -32,10 +32,10 @@ function createUser(nickname, nameUser, email) {
     time: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+        getFeedback("Register", "Enjoy dobdeb! :)", true);
     })
     .catch((error) => {
-        console.error("Error adding document: ", error);
+        getFeedback("Register", error.message, false);
     });
 }
 // Create user
@@ -49,13 +49,13 @@ function savePost(title, text, nickname) {
       nickname: nickname,
       time: firebase.firestore.FieldValue.serverTimestamp()
     })
-    .then(function(docRef) {
-      console.log("Post guardado con ID: ", docRef.id);
-      deleteElementsPost();
-      getPosts('all');
+    .then(function() {
+        getFeedback("Post", "Posted with exit!", true);
+        deleteElementsPost();
+        getPosts('all');
     })
     .catch(function(error) {
-      console.error("Error al guardar el post: ", error);
+        getFeedback("Post", error.message, false);
     });
 }
 // Create Post
@@ -70,10 +70,10 @@ function createAlert(message, rol) {
         time: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+        getFeedback("Alert", "Alert created", true);
     })
     .catch((error) => {
-        console.error("Error adding document: ", error);
+        getFeedback("Alert", error, false);
     });
 }
 // Create alert
@@ -212,7 +212,7 @@ function getPosts(nickname) {
         });
     })
     .catch(error => {
-        console.log('Error getting documents', error);
+        getFeedback("Posts", error, false);
     });
 }
 // Get posts
@@ -353,7 +353,7 @@ function showAlerts() {
         });
     })
     .catch(error => {
-        console.log('Error getting documents', error);
+        getFeedback("Alerts", error, false);
     });
     if (documentAlert.firstChild==null) {
         deleteElementsAlert();
@@ -445,7 +445,7 @@ function getProfile(email) {
         });
     })
     .catch(error => {
-        console.log('Error getting documents', error);
+        getFeedback("My Profile", error, false);
     });
 }
 // Get myProfile
@@ -750,9 +750,44 @@ function getHomeForm(actualUserConnected) {
             documentContent.appendChild(formDiv);
         });
     });
-    
 }
 // Get Form
+
+// Get userFeedback
+function getFeedback(title, message, goodMessage) {
+    const userFeedback = document.getElementById("userFeedback"); 
+
+    const userFeedbackDiv = document.createElement("div");
+    userFeedbackDiv.id = "q";
+    userFeedbackDiv.setAttribute('onclick', "deleteUserFeedback(this);");
+
+    const userFeedbackDivDiv = document.createElement("div");
+
+    const userFeedbackDivDivImg = document.createElement("img");
+    userFeedbackDivDivImg.setAttribute('src', "https://firebasestorage.googleapis.com/v0/b/dobdeb-411d9.appspot.com/o/alerts%2FalertRed.png?alt=media&token=80f637d0-0c3a-45fc-b93d-fad2f6cf8904");
+    if (goodMessage) {
+        userFeedbackDivDivImg.removeAttribute('src');
+        userFeedbackDivDivImg.setAttribute('src', "https://firebasestorage.googleapis.com/v0/b/dobdeb-411d9.appspot.com/o/alerts%2Falert.png?alt=media&token=b1f8afed-cb98-45b0-bc0d-92c46be98011");
+    }
+
+    const userFeedbackDivDivStrong = document.createElement("strong");
+    userFeedbackDivDivStrong.textContent = title;
+
+    const userFeedbackDivDiv2 = document.createElement("div");
+    userFeedbackDivDiv2.textContent = message;
+    userFeedbackDivDiv2.classList.add("text");
+
+    const userFeedbackDivSmall = document.createElement("small");
+    userFeedbackDivSmall.textContent = "";
+
+    userFeedbackDivDiv.appendChild(userFeedbackDivDivImg);
+    userFeedbackDivDiv.appendChild(userFeedbackDivDivStrong);
+    userFeedbackDiv.appendChild(userFeedbackDivDiv);
+    userFeedbackDiv.appendChild(userFeedbackDivDiv2);
+    userFeedbackDiv.appendChild(userFeedbackDivSmall);
+    userFeedback.appendChild(userFeedbackDiv);
+}
+// Get userFeedback
 
 // Get functions
 
@@ -780,6 +815,7 @@ function uploadPhoto(file, email) {
                 querySnapshot.forEach(function(doc) {
                     // doc.id es el ID del documento
                     collectionRef.doc(doc.id).update({photo: downloadURL});
+                    getFeedback("Photo", "Photo changed", true);
                     deletePostsUser();
                     changeContent('myProfile');
                 });
@@ -787,7 +823,7 @@ function uploadPhoto(file, email) {
         });
     })
     .catch(error => {
-    console.error(error);
+        getFeedback("Photo", error, false);
     });
 }
 // Update Photo
@@ -800,6 +836,7 @@ function updateDescription(text, email) {
         querySnapshot.forEach(function(doc) {
             // doc.id es el ID del documento
             collectionRef.doc(doc.id).update({description: text});
+            getFeedback("Description", "Description changed", true);
             deleteElementsPost();
             changeContent('myProfile');
         });
@@ -816,12 +853,12 @@ function editPost(title, text, id) {
       time: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(function() {
-      console.log("Post editado con ID: ", id);
-      deleteElementsPost();
-      getPosts('all');
+        getFeedback("Edit Post", "Post edited", true);
+        deleteElementsPost();
+        getPosts('all');
     })
     .catch(function(error) {
-      console.error("Error al editar el post: ", error);
+        getFeedback("Edit Post", error, false);
     });
 }
 // Update post
@@ -841,11 +878,11 @@ function updateForm(option, id) {
                         yes: emails,
                     })
                     .then(function() {
-                        console.log("Post editado con ID: ", id);
+                        getFeedback("Vote", `Voted ${option}`, true);
                         changeContent('home');
                     })
                     .catch(function(error) {
-                        console.error("Error al editar el post: ", error);
+                        getFeedback("Vote", error, false);
                     });
                 } else {
                     emails = form.no;
@@ -854,11 +891,11 @@ function updateForm(option, id) {
                         no: emails,
                     })
                     .then(function() {
-                        console.log("Post editado con ID: ", id);
+                        getFeedback("Vote", `Voted ${option}`, true);
                         changeContent('home');
                     })
                     .catch(function(error) {
-                        console.error("Error al editar el post: ", error);
+                        getFeedback("Vote", error, false);
                     });
                 }
             });
@@ -912,11 +949,11 @@ function deletePostsUser(id) {
     const postDocRef = postsRef.doc(postId);
     
     postDocRef.delete().then(() => {
-        console.log("Document successfully deleted!");
+        getFeedback("Delete post", 'Post deleted', true);
         deleteElementsPost();
         getPosts('all');
     }).catch((error) => {
-        console.error("Error removing document: ", error);
+        getFeedback("Delete Post", error, false);
     });   
 }
 //Delete post
@@ -928,7 +965,6 @@ function disableAlert(emails, id) {
         emails: emails
       })
       .then(function() {
-        console.log("Post editado con ID: ", id);
         deleteElementsAlert();
         showAlerts();
       })
@@ -937,5 +973,12 @@ function disableAlert(emails, id) {
       });
 }
 // Disabled alert
+
+// Delete user feedback
+function deleteUserFeedback(context) {
+    const userFeedback = document.getElementById("userFeedback"); 
+    userFeedback.removeChild(context);
+}
+// Delete user feedback 
 
 // Delete functions
