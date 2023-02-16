@@ -686,17 +686,30 @@ function getHomeForm(actualUserConnected) {
             formH4.textContent = form.description;
 
             const formDivDiv = document.createElement('div');
-            formDivDiv.setAttribute('style', 'text-align: left;');
+            formDivDiv.classList.add('votes');
 
-            const formProgress = document.createElement('progress');
-            formProgress.max = '100';
-            const percent = (form.yes.length * 100)/(form.no.length + form.yes.length);
-            formProgress.value = `${percent}`;
+            const yes = form.yes.length;
+            const no = form.no.length;
+            const totalVotes = yes + no;
+
+            const yesPercent = ((yes * 100) / totalVotes);
+            const noPercent = ((no * 100) / totalVotes);
+
+            const formDivYes = document.createElement('div');
+            formDivYes.textContent = `${yesPercent}`;
+            formDivYes.classList.add('yes');
+            formDivYes.setAttribute('style', `width: ${yesPercent}%`);
+
+            const formDivNo = document.createElement('div');
+            formDivNo.textContent = `${noPercent}`;
+            formDivNo.classList.add('no');
+            formDivNo.setAttribute('style', `width: ${noPercent}%`);
 
             const formDivDivDiv = document.createElement('div');
             formDivDivDiv.id = 'form-button';
 
-            formDivDiv.appendChild(formProgress);
+            formDivDiv.appendChild(formDivYes);
+            formDivDiv.appendChild(formDivNo);
             formFormDiv.appendChild(formH3);
             formFormDiv.appendChild(formH4);
             formFormDiv.appendChild(formDivDiv);
@@ -734,7 +747,7 @@ function getHomeForm(actualUserConnected) {
                             stadisticsDivH3Yes.textContent = `${form.optionTwo}: ${form.yes.length}`;
         
                             getAllEmailUsers().then(users => { 
-                                const percentTotal = ((form.no.length + form.yes.length) * 100)/users.length;;
+                                const percentTotal = ((form.no.length + form.yes.length) * 100)/users.length;
                                 const stadisticsDivH3Percent = document.createElement('h3');
                                 stadisticsDivH3Percent.textContent = `Percent of total votes: ${percentTotal}%`;
         
