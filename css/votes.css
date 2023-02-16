@@ -1,0 +1,24 @@
+.votes {
+    text-align: left;
+    width:100%;
+    display: flex;
+    border-radius:10pt;
+    padding: 0.4vh;
+    background-color: #ffffff;
+}
+
+.yes, .no {
+    text-align: center;
+    border-radius: 10pt 0pt 0pt 10pt;
+}
+
+.yes{
+    background: green;
+    border-radius: 10pt 0pt 0pt 10pt;
+    margin-right: 0.4vh;
+}
+
+.no {
+    background: red;
+    border-radius: 0pt 10pt 10pt 0pt
+}
