@@ -7,10 +7,10 @@ loginForm.addEventListener("submit", e => {
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => {
         // Handle successful login
-        console.log("Usuario inició sesión con éxito", user);
+        getFeedback("Login", 'Logeado con exito', true);
     })
     .catch(error => {
         // Handle errors
-        console.error("Error al iniciar sesión", error);
+        getFeedback("Login", error, false);
     });
 });

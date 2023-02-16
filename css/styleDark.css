@@ -124,3 +124,30 @@ progress {
     0% {width: 0%; background-color: #f1f1f1;}
     100% {width: 100%; color: #000;}
 }
+
+#userFeedback {
+    background-color: #6C757D;
+    border-radius: 5vh;
+    display: table-row;
+    justify-content: right;
+    width:max-content;
+    height: max-content;
+    position: fixed;
+    bottom: 0;
+}
+
+#q {
+    border-radius: 5vh;
+    background-color: #212529;
+    color: #ffffff;
+    margin: 1vh;
+    padding: 2vh;
+}
+
+#q img {
+    width: 4vh;
+}
+
+#q .text {
+    margin: 2vh;
+}
