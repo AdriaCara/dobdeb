@@ -1,3 +1,11 @@
+getAllEmailUsers()
+.then(result => {;
+    emails = result;
+})
+.catch(error => {
+    getFeedback("Error", error.message, false);
+});
+
 function getPosts(nickname) {
     docPost.get()
     .then(snapshot => {

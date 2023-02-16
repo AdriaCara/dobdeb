@@ -9,11 +9,3 @@ const docUserR = firebase.firestore().collection('users').orderBy("time", "desc"
 const docAlert = firebase.firestore().collection('alerts').orderBy("time", "desc");
 const docForm = firebase.firestore().collection('forms').orderBy("time", "desc");
 let emails;
-
-getAllEmailUsers()
-.then(result => {;
-    emails = result;
-})
-.catch(error => {
-    getFeedback("Error", error.message, false);
-});
