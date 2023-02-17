@@ -13,12 +13,12 @@
 }
 
 .yes{
-    background: green;
+    background: rgb(54, 96, 54);
     border-radius: 10pt 0pt 0pt 10pt;
     margin-right: 0.4vh;
 }
 
 .no {
-    background: red;
+    background: rgb(243, 79, 79);
     border-radius: 0pt 10pt 10pt 0pt
 }
