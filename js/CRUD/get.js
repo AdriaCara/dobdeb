@@ -40,12 +40,14 @@ function getPosts(nickname) {
             postNickname.classList.add('fw-bold');
             postNickname.classList.add('m-2');
             getRolWithEmail(post.nickname).then(rol => {
-                if (rol==2) {
-                    const postVeryfied = document.createElement('p');
-                    postVeryfied.textContent = '👾';
-                    postNickname.appendChild(postVeryfied);
-                    postNickname.style.fontFamily = 'papyrus';
-                }
+                getEmogi(post.nickname).then(emogi => {
+                    if (rol==2) {
+                        const postVeryfied = document.createElement('p');
+                        postVeryfied.textContent = emogi;
+                        postNickname.appendChild(postVeryfied);
+                        postNickname.style.fontFamily = 'papyrus';
+                    }
+                });
             });
 
             const postButtonEdit = document.createElement('button');
@@ -171,6 +173,12 @@ function getGallery() {
             galleryTitle.classList.add('border-danger');
             galleryTitle.classList.add('fs-2');
             galleryTitle.style.fontFamily = 'papyrus';
+            if (user.rol == 2) {
+                const galleryVeryfied = document.createElement('p');
+                galleryVeryfied.textContent = user.emogi;
+                galleryTitle.appendChild(galleryVeryfied);
+                galleryTitle.style.fontFamily = 'papyrus';
+            }
 
             const galleryText = document.createElement('p');
             galleryText.textContent = `${user.description}`;
@@ -319,7 +327,7 @@ function getProfile(email) {
             galleryTitle.classList.add('fs-2');
             if (user.rol==2) {
                 const galleryVeryfied = document.createElement('p');
-                galleryVeryfied.textContent = '👾';
+                galleryVeryfied.textContent = user.emogi;
                 galleryTitle.appendChild(galleryVeryfied);
                 galleryTitle.style.fontFamily = 'papyrus';
             }
@@ -419,9 +427,9 @@ function getHomeMostPoster(filter, actualUserConnected) {
                     homeTitle.classList.add('border-danger');
                     homeTitle.classList.add('fs-2');
                     if (user.rol==2) {
-                        // const homeVeryfied = document.createElement('p');
-                        // homeVeryfied.textContent = '👾';
-                        // homeTitle.appendChild(homeVeryfied);
+                        const homeVeryfied = document.createElement('p');
+                        homeVeryfied.textContent = user.emogi;
+                        homeTitle.appendChild(homeVeryfied);
                         homeTitle.style.fontFamily = 'papyrus';
                     }
         
@@ -722,3 +730,12 @@ function getFeedback(title, message, goodMessage) {
     userFeedback.appendChild(userFeedbackDiv);
 }
 // Get userFeedback
+
+//  Get emogi
+function getEmogi(nickname)  {
+    const collectionRef = firebase.firestore().collection('users');
+    return collectionRef.where("nickname", "==", nickname).get().then(function(querySnapshot) {
+        return querySnapshot.docs[0].data().emogi;
+    });
+}
+//  Get emogi

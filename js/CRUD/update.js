@@ -49,6 +49,22 @@ function updateDescription(text, email) {
 }
 // Update description
 
+// Update emogi
+function updateEmogi(emogi, email) {
+    // Actualizar la descripcion en el documento específico
+    const collectionRef = firebase.firestore().collection('users');
+    return collectionRef.where("email", "==", email).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.id es el ID del documento
+            collectionRef.doc(doc.id).update({emogi: emogi});
+            getFeedback("Emogi", `Emogi changed to ${emogi}`, true);
+            deleteElementsPost();
+            changeContent('myProfile');
+        });
+    });
+}
+// Update emogi
+
 // Update post
 function editPost(title, text, id) {
     // Guardar el post en la colección "posts"
