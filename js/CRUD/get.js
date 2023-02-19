@@ -700,7 +700,7 @@ function getFeedback(title, message, goodMessage) {
     const userFeedback = document.getElementById("userFeedback"); 
 
     const userFeedbackDiv = document.createElement("div");
-    userFeedbackDiv.id = "q";
+    userFeedbackDiv.id = "feedback";
     userFeedbackDiv.setAttribute('onclick', "deleteUserFeedback(this);");
 
     const userFeedbackDivDiv = document.createElement("div");

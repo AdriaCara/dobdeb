@@ -9,7 +9,7 @@
     bottom: 0;
 }
 
-#q {
+#feedback {
     border-radius: 5vh;
     background-color: #212529;
     color: #ffffff;
@@ -17,10 +17,10 @@
     padding: 2vh;
 }
 
-#q img {
+#feedback img {
     width: 4vh;
 }
 
-#q .text {
+#feedback .text {
     margin: 2vh;
 }
