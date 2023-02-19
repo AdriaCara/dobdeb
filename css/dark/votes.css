@@ -1,3 +1,15 @@
+#form {
+    color: #ffffff;
+    background: #212529;
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+.buttonForm {
+    font-size: 1.6rem;
+    margin: 1rem;
+}
+
 .votes {
     text-align: left;
     width:100%;

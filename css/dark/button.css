@@ -1,0 +1,33 @@
+.buttonStyle {
+    position: relative;
+    background: #00000000;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    font-weight: 400;
+    padding: 0.1rem 0.3rem;
+    transition: 0.5s;
+    flex-direction: row;
+    border-radius: 0.5rem;
+    border-color: #fbfbfb;
+}
+
+.buttonStyle:hover {
+    letter-spacing: 0.3rem;
+    box-shadow: 0 0 1rem var(--clr);
+    border-color: var(--clr);
+    color: var(--clr);
+}
+
+.buttonStyle:before {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+}
+
+.buttonStyle {
+    position: relative;
+    z-index: 1;
+}
