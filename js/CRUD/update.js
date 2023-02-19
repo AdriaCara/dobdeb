@@ -21,7 +21,6 @@ function uploadPhoto(file, email) {
                     // doc.id es el ID del documento
                     collectionRef.doc(doc.id).update({photo: downloadURL});
                     getFeedback("Photo", "Photo changed", true);
-                    deletePostsUser();
                     changeContent('myProfile');
                 });
             });
