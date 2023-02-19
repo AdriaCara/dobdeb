@@ -1,0 +1,13 @@
+#postContent {
+    margin: 0;
+    padding: 0;
+}
+
+#postContent li {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.styleModalContent {
+    width: 35rem;
+}
