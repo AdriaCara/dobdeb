@@ -625,12 +625,12 @@ function getHomeForm(actualUserConnected) {
             const noPercent = ((no * 100) / totalVotes);
 
             const formDivYes = document.createElement('div');
-            formDivYes.textContent = `${Math.round(yesPercent, 2)}`;
+            formDivYes.textContent = `${Math.round(yesPercent, 2)}%`;
             formDivYes.classList.add('yes');
             formDivYes.setAttribute('style', `width: ${Math.round(yesPercent, 2)}%`);
 
             const formDivNo = document.createElement('div');
-            formDivNo.textContent = `${Math.round(noPercent, 2)}`;
+            formDivNo.textContent = `${Math.round(noPercent, 2)}%`;
             formDivNo.classList.add('no');
             formDivNo.setAttribute('style', `width: ${Math.round(noPercent, 2)}%`);
 
