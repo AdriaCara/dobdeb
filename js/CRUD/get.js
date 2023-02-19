@@ -625,12 +625,12 @@ function getHomeForm(actualUserConnected) {
             const noPercent = ((no * 100) / totalVotes);
 
             const formDivYes = document.createElement('div');
-            formDivYes.textContent = `${Math.round(yesPercent, 2)}`;
+            formDivYes.textContent = `${Math.round(yesPercent, 2)}%`;
             formDivYes.classList.add('yes');
             formDivYes.setAttribute('style', `width: ${Math.round(yesPercent, 2)}%`);
 
             const formDivNo = document.createElement('div');
-            formDivNo.textContent = `${Math.round(noPercent, 2)}`;
+            formDivNo.textContent = `${Math.round(noPercent, 2)}%`;
             formDivNo.classList.add('no');
             formDivNo.setAttribute('style', `width: ${Math.round(noPercent, 2)}%`);
 
@@ -700,7 +700,7 @@ function getFeedback(title, message, goodMessage) {
     const userFeedback = document.getElementById("userFeedback"); 
 
     const userFeedbackDiv = document.createElement("div");
-    userFeedbackDiv.id = "q";
+    userFeedbackDiv.id = "feedback";
     userFeedbackDiv.setAttribute('onclick', "deleteUserFeedback(this);");
 
     const userFeedbackDivDiv = document.createElement("div");
