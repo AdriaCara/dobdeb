@@ -66,8 +66,8 @@ function getPosts(nickname) {
                 if (rol==0) {
                     postButtonEdit.onclick = (event) => {
                         event.preventDefault();
-                        document.getElementById("titleEditPost").setAttribute("placeholder", post.title);
-                        document.getElementById("textEditPost").setAttribute("placeholder", post.text);
+                        document.getElementById("titleEditPost").setAttribute("value", post.title);
+                        document.getElementById("textEditPost").textContent = post.text;
                         document.getElementById("editPostNickname").textContent = post.nickname;
                     }
                     postButtonDelte.onclick = (event) => {
@@ -79,8 +79,8 @@ function getPosts(nickname) {
                         if (nickname==post.nickname) {
                             postButtonEdit.onclick = (event) => {
                                 event.preventDefault();
-                                document.getElementById("titleEditPost").setAttribute("placeholder", post.title);
-                                document.getElementById("textEditPost").setAttribute("placeholder", post.text);
+                                document.getElementById("titleEditPost").setAttribute("value", post.title);
+                                document.getElementById("textEditPost").textContent = post.text;
                                 document.getElementById("editPostNickname").textContent = post.nickname;
                             }
                             postButtonDelte.onclick = (event) => {
