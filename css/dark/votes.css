@@ -2,7 +2,8 @@
     color: #ffffff;
     background: #212529;
     padding: 1rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
+    border: 0.2rem solid rgb(255, 255, 255);
 }
 
 .buttonForm {
@@ -15,7 +16,7 @@
     width:100%;
     display: flex;
     border-radius:10pt;
-    padding: 0.4vh;
+    padding: 0.3vh;
     background-color: #ffffff;
 }
 
