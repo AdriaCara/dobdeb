@@ -54,6 +54,8 @@ function changeContent(documentShow) {
         navbar.appendChild(changePhotoLi);
         changeDescriptionLi.appendChild(changeDescriptionButton);
         navbar.appendChild(changeDescriptionLi);
+        changeEmogiLi.appendChild(changeEmogiButton);
+        navbar.appendChild(changeEmogiLi);
         getProfile(email);
     } else {
         titleDocument.textContent = 'Home';

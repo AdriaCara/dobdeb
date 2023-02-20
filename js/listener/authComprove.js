@@ -82,6 +82,20 @@ changeDescriptionButton.setAttribute('style', "--clr:#b1f45f");
 changeDescriptionButton.setAttribute('data-bs-toggle', 'modal');
 changeDescriptionButton.setAttribute('data-bs-target', '#changeDescriptionModal');
 
+
+const changeEmogiLi = document.createElement('li');
+changeEmogiLi.id = 'changeEmogi';
+changeEmogiLi.classList.add('nav-item');
+changeEmogiLi.classList.add('marginTop');
+
+const changeEmogiButton = document.createElement('button');
+changeEmogiButton.textContent = 'Change Emogi';
+changeEmogiButton.id = 'changeEmogiButton';
+changeEmogiButton.type = 'button';
+changeEmogiButton.classList.add('buttonStyle');
+changeEmogiButton.setAttribute('style', "--clr:#b1f45f");
+changeEmogiButton.setAttribute('onclick', "changeModal('changeEmogi');");
+
 const galleryLi = document.createElement('li');
 galleryLi.id = 'register';
 galleryLi.classList.add('nav-item');

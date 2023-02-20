@@ -1,3 +1,4 @@
+// Delete posts
 function deleteElementsPost(){
     while (documentContent.firstChild) {
        documentContent.firstChild.remove()
@@ -68,3 +69,11 @@ function deleteUserFeedback(context) {
     userFeedback.removeChild(context);
 }
 // Delete user feedback 
+
+// Delete modal
+function deleteElementsModal(){
+    while (modalContent.firstChild) {
+        modalContent.firstChild.remove()
+   }
+}
+// Delete modal

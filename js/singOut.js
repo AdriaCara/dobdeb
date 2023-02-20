@@ -3,10 +3,10 @@ function logOut() {
     if (user) {
     firebase.auth().signOut().then(function() {
         // Sign-out successful.
-        console.log("Sesión cerrada");
+        getFeedback("Log out", 'Bye!', true);
       }).catch(function(error) {
         // An error happened.
-        console.log("Error al cerrar sesión: ", error);
+        getFeedback("Log out", error, false);
       });
 }
 }
