@@ -303,11 +303,24 @@ function getProfile(email) {
                 profileTitle.textContent = user.name;
                 profileTitle.classList.add('bg-transparent');
                 profileTitle.classList.add('fs-2');
-                if (user.rol==2) {
+                if (user.rol<=2) {
                     const profileVeryfied = document.createElement('p');
                     profileVeryfied.textContent = user.emogi;
                     profileTitle.appendChild(profileVeryfied);
                     profileTitle.style.fontFamily = 'papyrus';
+                } else {
+                    getRolActualUser().then(rol => {
+                        if (rol == 0) {
+                            const profileVeryfied = document.createElement('button');
+                            profileVeryfied.textContent = `Verificar ${user.nickname}`;
+                            profileVeryfied.classList.add('bg-success');
+                            profileVeryfied.onclick = (event) => {
+                                event.preventDefault();
+                                updateRol(user.email, 2);
+                            }
+                            profileDiv.appendChild(profileVeryfied);
+                        }
+                    });
                 }
 
                 const profileImage = document.createElement('img');
