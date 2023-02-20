@@ -5,7 +5,7 @@ const documentContent = document.getElementById('postContent');
 const navbar = document.getElementById('navbar');
 const docPost = firebase.firestore().collection('posts').orderBy("time", "desc");
 const docUser = firebase.firestore().collection('users').orderBy("name", "asc");
-const docUserR = firebase.firestore().collection('users').orderBy("time", "desc");
+const docUserTime = firebase.firestore().collection('users').orderBy("time", "desc");
 const docAlert = firebase.firestore().collection('alerts').orderBy("time", "desc");
 const docForm = firebase.firestore().collection('forms').orderBy("time", "desc");
 let emails;

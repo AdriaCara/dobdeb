@@ -1,14 +1,4 @@
-.imgGallery {
-    width: 10rem;
-    height: 10rem;
-    margin: auto;
-    margin-top: 1rem;
-    border: 0.2rem solid rgb(28, 86, 10);
-    border-radius: 4px;
-    object-fit: cover
-}
-
 #imageAlert {
-    width: 3rem;
-    border-radius: 1rem;
+    aspect-ratio:  attr(width) / attr(height);
+    border-radius: 0.5rem;
 }

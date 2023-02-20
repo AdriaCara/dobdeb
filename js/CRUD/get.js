@@ -1,11 +1,3 @@
-getAllEmailUsers()
-.then(result => {;
-    emails = result;
-})
-.catch(error => {
-    getFeedback("Error", error.message, false);
-});
-
 function getPosts(nickname) {
     docPost.get()
     .then(snapshot => {
@@ -13,7 +5,6 @@ function getPosts(nickname) {
             const post = doc.data();
             const postDiv = document.createElement('form');
             postDiv.classList.add('card');
-            postDiv.classList.add('border-success');
             postDiv.classList.add('m-5');
             postDiv.classList.add('bg-dark');
             postDiv.classList.add('text-light');
@@ -156,13 +147,12 @@ function getGallery() {
                 galleryCard.classList.add('text-light');
     
                 const galleryImage = document.createElement('img');
-                if (user.hasOwnProperty("photo")) {
-                    var path = user.photo;
-                    galleryImage.src = path;
-                    galleryImage.classList.add('imgGallery');
-                    galleryImage.classList.add("card-img-top");
-                    galleryImage.style.maxWidth = '10rem'
-                }
+                var path = user.photo;
+                galleryImage.setAttribute('alt', `User ${user.nickname} profile image`);
+                galleryImage.src = path;
+                galleryImage.classList.add('imgGallery');
+                galleryImage.classList.add("card-img-top");
+                galleryImage.style.maxWidth = '10rem'
     
                 const galleryCardBody = document.createElement('div');
                 galleryCardBody.classList.add('card-body');
@@ -334,12 +324,11 @@ function getProfile(email) {
                 }
 
                 const galleryImage = document.createElement('img');
-                if (user.hasOwnProperty("photo")) {
-                    var path = user.photo;
-                    galleryImage.src = path;
-                    galleryImage.classList.add("imgGallery");
-                    galleryDiv.appendChild(galleryImage);
-                }
+                var path = user.photo;
+                galleryImage.src = path;
+                galleryImage.setAttribute('alt', `User ${user.nickname} profile image`);
+                galleryImage.classList.add("imgGallery");
+                galleryDiv.appendChild(galleryImage);
 
                 const galleryText = document.createElement('p');
                 galleryText.textContent = `${user.description}`;
@@ -383,7 +372,7 @@ function getHome(actualUserConnected) {
 // Get home most poster
 function getHomeMostPoster(filter, actualUserConnected) {
     let count = 0;
-    docUserR.get()
+    docUserTime.get()
     .then(snapshot => {
         snapshot.docs.forEach(doc => {
             const user = doc.data();
@@ -396,19 +385,18 @@ function getHomeMostPoster(filter, actualUserConnected) {
 
                     const homeCard = document.createElement('div');
                     homeCard.classList.add('card');
-                    homeCard.classList.add('border-primary');
                     homeCard.classList.add('m-5');
                     homeCard.classList.add('bg-dark');
                     homeCard.classList.add('text-light');
         
                     const homeImage = document.createElement('img');
-                    if (user.hasOwnProperty("photo")) {
-                        var path = user.photo;
-                        homeImage.src = path;
-                        homeImage.classList.add('imgGallery');
-                        homeImage.classList.add("card-img-top");
-                        homeImage.style.maxWidth = '10rem'
-                    }
+                    var path = user.photo;
+                    homeImage.src = path;
+                    homeImage.setAttribute('alt', `User ${user.nickname} profile image`);
+                    homeImage.setAttribute('width', '200');
+                    homeImage.setAttribute('height', '200');
+                    homeImage.classList.add('imgGallery');
+                    homeImage.classList.add("card-img-top");
         
                     const homeCardBody = document.createElement('div');
                     homeCardBody.classList.add('card-body');
@@ -436,9 +424,7 @@ function getHomeMostPoster(filter, actualUserConnected) {
                     const homeDate = user.time.toDate();
                     const postDateFormat = homeDate.getDate() + '/' + (homeDate.getMonth() + 1) + '/' + homeDate.getFullYear() + ' ' + homeDate.getHours() + ':' + homeDate.getMinutes() + ':' + homeDate.getSeconds();
                     homeTime.textContent = `Here since: ${postDateFormat}`;
-                    homeTime.classList.add('card-footer');
                     homeTime.classList.add('bg-transparent');
-                    homeTime.classList.add('text-muted');
         
                     homeCardBody.appendChild(homeTitle);
                     homeCardBody.appendChild(homeText);
@@ -579,7 +565,7 @@ async function getAllEmailUsers() {
         });
         return emails;
     } catch (error) {
-        console.log('Error getting documents', error);
+        getFeedback("Error", error.message, false);
     }
 }
 
@@ -704,6 +690,7 @@ function getFeedback(title, message, goodMessage) {
         userFeedbackDivDivImg.removeAttribute('src');
         userFeedbackDivDivImg.setAttribute('src', "https://firebasestorage.googleapis.com/v0/b/dobdeb-411d9.appspot.com/o/alerts%2Falert.png?alt=media&token=b1f8afed-cb98-45b0-bc0d-92c46be98011");
     }
+    userFeedbackDivDivImg.setAttribute('alt', `Feedback alert image`);
 
     const userFeedbackDivDivStrong = document.createElement("strong");
     userFeedbackDivDivStrong.textContent = title;
