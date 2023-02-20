@@ -1,19 +1,19 @@
 .card{
+    border: 0.2rem solid rgb(255, 255, 255);
     padding: 5rem;
-    border-radius: 10rem;
+    border-radius: 2rem;
     border-color: #fff;
     max-width: 30rem;
     height: max-content;
 }
 
 .card img {
-    border-radius: 10rem;
-    border-color: #fff;
-    max-height: 20rem;
-}
-
-.card button {
-    
+    aspect-ratio:  attr(width) / attr(height);
+    margin: auto;
+    margin-top: 1rem;
+    border: 0.2rem solid rgb(255, 255, 255);
+    border-radius: 2vh;
+    object-fit: cover
 }
 
 .disable-select {

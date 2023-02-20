@@ -1,11 +1,3 @@
-getAllEmailUsers()
-.then(result => {;
-    emails = result;
-})
-.catch(error => {
-    getFeedback("Error", error.message, false);
-});
-
 function getPosts(nickname) {
     docPost.get()
     .then(snapshot => {
@@ -13,7 +5,6 @@ function getPosts(nickname) {
             const post = doc.data();
             const postDiv = document.createElement('form');
             postDiv.classList.add('card');
-            postDiv.classList.add('border-success');
             postDiv.classList.add('m-5');
             postDiv.classList.add('bg-dark');
             postDiv.classList.add('text-light');
@@ -23,7 +14,7 @@ function getPosts(nickname) {
             postTitle.textContent = `${post.title}`;
             postTitle.classList.add('card-header');
             postTitle.classList.add('bg-transparent');
-            postTitle.classList.add('border-success');
+            postTitle.classList.add('border-light');
             postTitle.classList.add('fs-2');
 
             const postDivBody = document.createElement('div');
@@ -75,8 +66,8 @@ function getPosts(nickname) {
                 if (rol==0) {
                     postButtonEdit.onclick = (event) => {
                         event.preventDefault();
-                        document.getElementById("titleEditPost").setAttribute("placeholder", post.title);
-                        document.getElementById("textEditPost").setAttribute("placeholder", post.text);
+                        document.getElementById("titleEditPost").setAttribute("value", post.title);
+                        document.getElementById("textEditPost").textContent = post.text;
                         document.getElementById("editPostNickname").textContent = post.nickname;
                     }
                     postButtonDelte.onclick = (event) => {
@@ -88,8 +79,8 @@ function getPosts(nickname) {
                         if (nickname==post.nickname) {
                             postButtonEdit.onclick = (event) => {
                                 event.preventDefault();
-                                document.getElementById("titleEditPost").setAttribute("placeholder", post.title);
-                                document.getElementById("textEditPost").setAttribute("placeholder", post.text);
+                                document.getElementById("titleEditPost").setAttribute("value", post.title);
+                                document.getElementById("textEditPost").textContent = post.text;
                                 document.getElementById("editPostNickname").textContent = post.nickname;
                             }
                             postButtonDelte.onclick = (event) => {
@@ -105,10 +96,6 @@ function getPosts(nickname) {
             const postDate = post.time.toDate();
             const postDateFormat = postDate.getDate() + '/' + (postDate.getMonth() + 1) + '/' + postDate.getFullYear() + ' ' + postDate.getHours() + ':' + postDate.getMinutes() + ':' + postDate.getSeconds();
             postTime.textContent = postDateFormat;
-            postTime.classList.add('card-footer');
-            postTime.classList.add('bg-transparent');
-            postTime.classList.add('text-succes');
-            postTime.classList.add('text-muted');
 
             postDiv.appendChild(postDivBody);
             postDiv.appendChild(postTitle);
@@ -146,79 +133,73 @@ function getGallery() {
     .then(snapshot => {
         snapshot.docs.forEach(doc => {
             const user = doc.data();
-
-            const galleryCard = document.createElement('div');
-            galleryCard.classList.add('card');
-            galleryCard.classList.add('border-primary');
-            galleryCard.classList.add('m-5');
-            galleryCard.classList.add('bg-dark');
-            galleryCard.classList.add('text-light');
-
-            const galleryImage = document.createElement('img');
-            if (user.hasOwnProperty("photo")) {
+            
+            if (user.rol == 2) {
+                const galleryCard = document.createElement('div');
+                galleryCard.classList.add('card');
+                galleryCard.classList.add('m-5');
+                galleryCard.classList.add('bg-dark');
+                galleryCard.classList.add('text-light');
+    
+                const galleryImage = document.createElement('img');
                 var path = user.photo;
+                galleryImage.setAttribute('alt', `User ${user.nickname} profile image`);
                 galleryImage.src = path;
+                galleryImage.setAttribute('width', '200');
+                galleryImage.setAttribute('height', '200');
                 galleryImage.classList.add('imgGallery');
-                galleryImage.classList.add("card-img-top");
-                galleryImage.style.maxWidth = '10rem'
-            }
-
-            const galleryCardBody = document.createElement('div');
-            galleryCardBody.classList.add('card-body');
-
-            const galleryTitle = document.createElement('h5');
-            galleryTitle.textContent = user.name;
-            galleryTitle.classList.add('card-title');
-            galleryTitle.classList.add('bg-transparent');
-            galleryTitle.classList.add('border-danger');
-            galleryTitle.classList.add('fs-2');
-            galleryTitle.style.fontFamily = 'papyrus';
-            if (user.rol == 2) {
-                const galleryVeryfied = document.createElement('p');
-                galleryVeryfied.textContent = user.emogi;
-                galleryTitle.appendChild(galleryVeryfied);
+    
+                const galleryCardBody = document.createElement('div');
+                galleryCardBody.classList.add('card-body');
+    
+                const galleryTitle = document.createElement('h5');
+                galleryTitle.textContent = user.name;
+                galleryTitle.classList.add('card-title');
+                galleryTitle.classList.add('border-danger');
+                galleryTitle.classList.add('fs-2');
                 galleryTitle.style.fontFamily = 'papyrus';
-            }
-
-            const galleryText = document.createElement('p');
-            galleryText.textContent = `${user.description}`;
-            galleryText.classList.add('card-text');
-
-            const galleryFooter = document.createElement('div');
-
-            const galleryTime = document.createElement('small');
-            const postDate = user.time.toDate();
-            const postDateFormat = postDate.getDate() + '/' + (postDate.getMonth() + 1) + '/' + postDate.getFullYear() + ' ' + postDate.getHours() + ':' + postDate.getMinutes() + ':' + postDate.getSeconds();
-            galleryTime.textContent = `Here since: ${postDateFormat}`;
-            galleryTime.classList.add('card-footer');
-            galleryTime.classList.add('bg-transparent');
-            galleryTime.classList.add('text-muted');
-
-            const galleryProfileButton = document.createElement('button');
-            galleryProfileButton.textContent = "Profile";
-            galleryProfileButton.classList.add('btn');
-            galleryProfileButton.classList.add('btn-primary');
-            galleryProfileButton.classList.add('col-6');
-            galleryProfileButton.classList.add('mx-auto');
-            galleryProfileButton.type = 'submit';
-            galleryProfileButton.onclick = (event) => {
-                event.preventDefault();
-                changeContent('anotherProfile');
-                getProfile(user.email);
-            }
-
-            galleryCardBody.appendChild(galleryTitle);
-            galleryCardBody.appendChild(galleryText);
-
-            galleryFooter.appendChild(galleryTime);
-            galleryFooter.appendChild(galleryProfileButton);
-
-            galleryCard.appendChild(galleryImage);
-            galleryCard.appendChild(galleryCardBody);
-            galleryCard.appendChild(galleryFooter);
-
-            if (user.rol == 2) {
+                if (user.rol == 2) {
+                    const galleryVeryfied = document.createElement('p');
+                    galleryVeryfied.textContent = user.emogi;
+                    galleryTitle.appendChild(galleryVeryfied);
+                    galleryTitle.style.fontFamily = 'papyrus';
+                }
+    
+                const galleryText = document.createElement('p');
+                galleryText.textContent = `${user.description}`;
+                galleryText.classList.add('card-text');
+    
+                const galleryFooter = document.createElement('div');
+    
+                const galleryTime = document.createElement('small');
+                const postDate = user.time.toDate();
+                const postDateFormat = postDate.getDate() + '/' + (postDate.getMonth() + 1) + '/' + postDate.getFullYear() + ' ' + postDate.getHours() + ':' + postDate.getMinutes() + ':' + postDate.getSeconds();
+                galleryTime.textContent = `Here since: ${postDateFormat}`;
+    
+                const galleryProfileButton = document.createElement('button');
+                galleryProfileButton.textContent = "Profile";
+                galleryProfileButton.classList.add('btn');
+                galleryProfileButton.classList.add('btn-primary');
+                galleryProfileButton.classList.add('col-6');
+                galleryProfileButton.classList.add('mx-auto');
+                galleryProfileButton.type = 'submit';
+                galleryProfileButton.onclick = (event) => {
+                    event.preventDefault();
+                    changeContent('anotherProfile');
+                    getProfile(user.email);
+                }
+    
+                galleryCardBody.appendChild(galleryTitle);
+                galleryCardBody.appendChild(galleryText);
+    
+                galleryFooter.appendChild(galleryTime);
+                galleryFooter.appendChild(galleryProfileButton);
+    
+                galleryCard.appendChild(galleryImage);
+                galleryCard.appendChild(galleryCardBody);
+                galleryCard.appendChild(galleryFooter);
                 documentContent.appendChild(galleryCard);
+    
             }
         });
     })
@@ -311,64 +292,62 @@ function getProfile(email) {
     .then(snapshot => {
         snapshot.docs.forEach(doc => {
             const user = doc.data();
-            const galleryDiv = document.createElement('div');
-            galleryDiv.classList.add('card');
-            galleryDiv.classList.add('border-danger');
-            galleryDiv.classList.add('m-5');
-            galleryDiv.classList.add('bg-dark');
-            galleryDiv.classList.add('text-light');
-            galleryDiv.style.Width = '30rem';
+            if (user.email == email) {
+                const profileDiv = document.createElement('div');
+                profileDiv.classList.add('card');
+                profileDiv.classList.add('m-5');
+                profileDiv.classList.add('bg-dark');
+                profileDiv.classList.add('text-light');
 
-            const galleryTitle = document.createElement('div');
-            galleryTitle.textContent = user.name;
-            galleryTitle.classList.add('card-header');
-            galleryTitle.classList.add('bg-transparent');
-            galleryTitle.classList.add('border-danger');
-            galleryTitle.classList.add('fs-2');
-            if (user.rol==2) {
-                const galleryVeryfied = document.createElement('p');
-                galleryVeryfied.textContent = user.emogi;
-                galleryTitle.appendChild(galleryVeryfied);
-                galleryTitle.style.fontFamily = 'papyrus';
-            }
+                const profileTitle = document.createElement('div');
+                profileTitle.textContent = user.name;
+                profileTitle.classList.add('bg-transparent');
+                profileTitle.classList.add('fs-2');
+                if (user.rol<=2) {
+                    const profileVeryfied = document.createElement('p');
+                    profileVeryfied.textContent = user.emogi;
+                    profileTitle.appendChild(profileVeryfied);
+                    profileTitle.style.fontFamily = 'papyrus';
+                } else {
+                    getRolActualUser().then(rol => {
+                        if (rol == 0) {
+                            const profileVeryfied = document.createElement('button');
+                            profileVeryfied.textContent = `Verificar ${user.nickname}`;
+                            profileVeryfied.classList.add('bg-success');
+                            profileVeryfied.onclick = (event) => {
+                                event.preventDefault();
+                                updateRol(user.email, 2);
+                            }
+                            profileDiv.appendChild(profileVeryfied);
+                        }
+                    });
+                }
 
-            const galleryImage = document.createElement('img');
-            if (user.hasOwnProperty("photo")) {
+                const profileImage = document.createElement('img');
                 var path = user.photo;
-                galleryImage.src = path;
-                galleryImage.classList.add("imgGallery");
-                galleryDiv.appendChild(galleryImage);
-            }
+                profileImage.src = path;
+                profileImage.setAttribute('width', '200');
+                profileImage.setAttribute('height', '200');
+                profileImage.setAttribute('alt', `User ${user.nickname} profile image`);
+                profileImage.classList.add("imgGallery");
+                profileDiv.appendChild(profileImage);
 
-            const galleryText = document.createElement('p');
-            galleryText.textContent = `${user.description}`;
-            galleryText.classList.add('card-text');
+                const profileText = document.createElement('p');
+                profileText.textContent = `${user.description}`;
 
-            const galleryTime = document.createElement('div');
-            const postDate = user.time.toDate();
-            const postDateFormat = postDate.getDate() + '/' + (postDate.getMonth() + 1) + '/' + postDate.getFullYear() + ' ' + postDate.getHours() + ':' + postDate.getMinutes() + ':' + postDate.getSeconds();
-            galleryTime.textContent = `Here since: ${postDateFormat}`;
-            galleryTime.classList.add('card-footer');
-            galleryTime.classList.add('bg-transparent');
-            galleryTime.classList.add('text-danger');
-            galleryTime.classList.add('text-muted');
+                const profileTime = document.createElement('div');
+                const postDate = user.time.toDate();
+                const postDateFormat = postDate.getDate() + '/' + (postDate.getMonth() + 1) + '/' + postDate.getFullYear() + ' ' + postDate.getHours() + ':' + postDate.getMinutes() + ':' + postDate.getSeconds();
+                profileTime.textContent = `Here since: ${postDateFormat}`;
 
-            galleryDiv.appendChild(galleryTitle);
-            galleryDiv.appendChild(galleryText);
-            galleryDiv.appendChild(galleryTime);
+                profileDiv.appendChild(profileTitle);
+                profileDiv.appendChild(profileText);
+                profileDiv.appendChild(profileTime);
 
-            if (user.email==email) {
-                documentContent.appendChild(galleryDiv);
-                getEmailActualUser().then(emailActual => {
-                    if (email==emailActual) {
-                        getNicknameActualUser().then(nickname => {
-                            titleDocument.textContent = nickname;
-                            getPosts(nickname);
-                        });
-                    } else {
-                        titleDocument.textContent = user.nickname;
-                        getPosts(user.nickname);
-                    }
+                documentContent.appendChild(profileDiv);
+                getNicknameActualUser().then(nickname => {
+                    titleDocument.textContent = nickname;
+                    getPosts(nickname);
                 });
             }
         });
@@ -387,10 +366,10 @@ function getHome(actualUserConnected) {
 }
 // Get home
 
-// Get home most poster
+// Get home most poster and repeated
 function getHomeMostPoster(filter, actualUserConnected) {
     let count = 0;
-    docUserR.get()
+    docUserTime.get()
     .then(snapshot => {
         snapshot.docs.forEach(doc => {
             const user = doc.data();
@@ -403,19 +382,17 @@ function getHomeMostPoster(filter, actualUserConnected) {
 
                     const homeCard = document.createElement('div');
                     homeCard.classList.add('card');
-                    homeCard.classList.add('border-primary');
                     homeCard.classList.add('m-5');
                     homeCard.classList.add('bg-dark');
                     homeCard.classList.add('text-light');
         
                     const homeImage = document.createElement('img');
-                    if (user.hasOwnProperty("photo")) {
-                        var path = user.photo;
-                        homeImage.src = path;
-                        homeImage.classList.add('imgGallery');
-                        homeImage.classList.add("card-img-top");
-                        homeImage.style.maxWidth = '10rem'
-                    }
+                    var path = user.photo;
+                    homeImage.src = path;
+                    homeImage.setAttribute('alt', `User ${user.nickname} profile image`);
+                    homeImage.setAttribute('width', '200');
+                    homeImage.setAttribute('height', '200');
+                    homeImage.classList.add('imgGallery');
         
                     const homeCardBody = document.createElement('div');
                     homeCardBody.classList.add('card-body');
@@ -443,9 +420,7 @@ function getHomeMostPoster(filter, actualUserConnected) {
                     const homeDate = user.time.toDate();
                     const postDateFormat = homeDate.getDate() + '/' + (homeDate.getMonth() + 1) + '/' + homeDate.getFullYear() + ' ' + homeDate.getHours() + ':' + homeDate.getMinutes() + ':' + homeDate.getSeconds();
                     homeTime.textContent = `Here since: ${postDateFormat}`;
-                    homeTime.classList.add('card-footer');
                     homeTime.classList.add('bg-transparent');
-                    homeTime.classList.add('text-muted');
         
                     homeCardBody.appendChild(homeTitle);
                     homeCardBody.appendChild(homeText);
@@ -484,7 +459,7 @@ function getHomeMostPoster(filter, actualUserConnected) {
         console.log('Error getting documents', error);
     });
 }
-// Get home most poster
+// Get home most poster and repeated
 
 // Get nickname more poster 
 function getNicknameMostPoster() {
@@ -586,7 +561,7 @@ async function getAllEmailUsers() {
         });
         return emails;
     } catch (error) {
-        console.log('Error getting documents', error);
+        getFeedback("Error", error.message, false);
     }
 }
 
@@ -711,6 +686,7 @@ function getFeedback(title, message, goodMessage) {
         userFeedbackDivDivImg.removeAttribute('src');
         userFeedbackDivDivImg.setAttribute('src', "https://firebasestorage.googleapis.com/v0/b/dobdeb-411d9.appspot.com/o/alerts%2Falert.png?alt=media&token=b1f8afed-cb98-45b0-bc0d-92c46be98011");
     }
+    userFeedbackDivDivImg.setAttribute('alt', `Feedback alert image`);
 
     const userFeedbackDivDivStrong = document.createElement("strong");
     userFeedbackDivDivStrong.textContent = title;

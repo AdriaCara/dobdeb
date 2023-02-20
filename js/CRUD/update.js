@@ -123,3 +123,17 @@ function updateForm(option, id) {
     });
 }
 // Update form
+
+// Update rol
+function updateRol(email, rol) {
+    // Actualizar la descripcion en el documento específico
+    const collectionRef = firebase.firestore().collection('users');
+    return collectionRef.where("email", "==", email).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.id es el ID del documento
+            collectionRef.doc(doc.id).update({rol: rol});
+            getFeedback("Rol", "Rol changed", true);
+        });
+    });
+}
+// Update rol

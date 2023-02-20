@@ -126,6 +126,9 @@ button.setAttribute('aria-expanded', 'false');
 
 const image = document.createElement('img');
 image.setAttribute('id', 'imageAlert');
+image.setAttribute('alt', 'Alert image');
+image.setAttribute('width', '50');
+image.setAttribute('height', '50');
 image.setAttribute('class', 'btn-img bg-secondary');
 image.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/dobdeb-411d9.appspot.com/o/alerts%2Falert.png?alt=media&token=b4c52418-2052-49f4-96dc-07e4b907fc4a');
 image.setAttribute('alt', 'Image');
