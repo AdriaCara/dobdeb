@@ -31,6 +31,7 @@
     <title>dobdeb</title>
   </head>
   <body id="body" class="disable-select">
+
     <!-- Navbar -->
     <header class="bg-dark">
       <nav>
@@ -54,40 +55,18 @@
     </main>
     <!-- Content -->
 
+    
+    <!-- Change Emogi -->
+    <di id="modal">
+      
+    </di>
+    <!-- Change Emogi -->
+
     <!-- Info for user  -->
     <div id="userFeedback">
 
     </div>
     <!-- Info for user  -->
-
-    <!-- Login -->
-    <div class="modal" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="loginModalLabel">Login</h5>
-            <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="login-form">
-              <div class="mb-3">
-                <label for="emailLogin" class="col-form-label">Email:</label>
-                <input type="email" class="form-control" id="emailLogin" name="emailLogin" autocomplete="current-email">
-              </div>
-              <div class="mb-3">
-                <label for="passwordLogin" class="col-form-label">Password:</label>
-                <input type="password" class="form-control" id="passwordLogin" autocomplete="current-password" name="passwordLogin">
-              </div>
-              <div id="login-button" class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Login</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Login -->
 
     <!-- Register -->
     <div class="modal" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -126,133 +105,6 @@
     </div>
     <!-- Register -->
 
-    <!-- Do a post -->
-    <div class="modal" id="postModal" data-backdrop="false" tabindex="150" aria-labelledby="changePhotoModal" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content styleModalContent">
-          <div class="modal-header">
-            <h5 class="modal-title" id="doAPostModalLabel">New post</h5>
-            <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="card-body text-center">
-            <form id="doAPost-form">
-              <div class="card border-success m-5 justify-content-center">
-                <input id="titleDoAPost" type="text" class="card-title card-header" placeholder="Title">
-                <textarea id="textDoAPost" class="card-text" placeholder="TEXT"></textarea>
-                <p id="doAPostNickname" class="disable">Error</p>
-                <p id="timeDoAPost" class="card-footer text-muted">00/00/00 00:00:00</p>
-              </div>
-              <div id="doAPost-button" class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Post</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Do a post -->
-
-    <!-- Change Photo -->
-    <div class="modal" id="changePhotoModal" tabindex="-1" aria-labelledby="changePhotoBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <form id="changePhoto-form">
-            <div class="modal-header">
-              <h5 class="modal-title" id="changePhotoModalLabel">Change Photo</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <input type="file" id="newPhoto" accept="image/*">
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Change photo -->
-
-    <!-- Change Description -->
-    <div class="modal" id="changeDescriptionModal" tabindex="-1" aria-labelledby="changeDescriptionBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <form id="changeDescription-form">
-            <div class="modal-header">
-              <h5 class="modal-title" id="changeDescriptionModalLabel">Change Description</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <textarea id="description" class="card-text text-center m-2" placeholder="Description" style="width: 30rem; height: 15rem;"></textarea>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Change Description -->
-
-    <!-- Change Emogi -->
-    <di id="modal">
-      
-    </di>
-    <!-- Change Emogi -->
-
-    <!-- Edit a post -->
-    <div class="modal" id="editPostModal" data-backdrop="false" tabindex="150" aria-labelledby="editPostModal" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content" style="width: 35rem;">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editPostModalLabel">Edit post</h5>
-            <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="card-body text-center styleModalContent">
-            <form id="editPost-form">
-              <div class="card border-success m-5 justify-content-center">
-                <input id="titleEditPost" type="text" class="card-title card-header" placeholder="Title">
-                <textarea id="textEditPost" class="card-text" placeholder="Text"></textarea>
-                <p id="editPostNickname" class="disable">Error</p>
-                <p id="timeEditPost" class="card-footer text-muted">00/00/00 00:00:00</p>
-              </div>
-              <div id="editPost-button" class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Post</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Edit a post -->
-
-    <!-- New Alert -->
-    <div class="modal" id="newAlertModal" data-backdrop="false" tabindex="150" aria-labelledby="newAlertModal" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content" style="width: 35rem;">
-          <div class="modal-header">
-            <h5 class="modal-title" id="newAlertModalLabel">New alert</h5>
-            <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="text-center">
-            <form id="newAlert-form">
-              <div class="border-success m-5 justify-content-center" style="width: 30rem;">
-                <label for="newAlertRol" class="col-form-label">Rol</label>
-                <input id="newAlertRol" class="text-center" placeholder="Defoult Rol 3"></input>
-                <label for="newAlertMessage" class="col-form-label">Message</label>
-                <input id="newAlertMessage" class="text-center" placeholder="Alert message"></input>
-              </div>
-              <div id="newAlert-button" class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Alert!!</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- New Alert -->
-
     <script src="js/firebaseConfig/firebase.js"></script>
     <script type="CommonJS" src="js/firebaseConfig/general.js"></script>
 
@@ -262,13 +114,32 @@
     <script async src="js/CRUD/update.js"></script>
     <script async src="js/CRUD/delete.js"></script>
 
-    <script async src="./js/dinamicHTML/modalChangeEmogi.js"></script>
+    <script async src="./js/dinamicHTML/buttons/profileButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/homeButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/galleryButtons.js"></script>
+    <script async src="./js/dinamicHTML/buttons/postButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/doAPostButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/changePhotoButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/changeDescription.js"></script>
+    <script async src="./js/dinamicHTML/buttons/changeEmogiButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/newAlertButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/logOutButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/alertButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/loginButton.js"></script>
+    <script async src="./js/dinamicHTML/buttons/registerButton.js"></script>
 
-    <script src="js/listener/authComprove.js"></script>
+    <script async src="./js/dinamicHTML/modals/modalLogin.js"></script>
+    <script async src="./js/dinamicHTML/modals/modalChangePhoto.js"></script>
+    <script async src="./js/dinamicHTML/modals/modalChangeEmogi.js"></script>
+    <script async src="./js/dinamicHTML/modals/modalChangeDescription.js"></script>
+    <script async src="./js/dinamicHTML/modals/modalNewAlert.js"></script>
+    <script async src="./js/dinamicHTML/modals/modalDoAPost.js"></script>
+    <script async src="./js/dinamicHTML/modals/modalChangePost.js"></script>
 
-    <script async src="js/alertHover.js"></script>
     <script async src="js/changeDocument.js"></script>
     <script async src="js/changeModals.js"></script>
+
+    <script async src="js/alertHover.js"></script>
     <script async src="js/singOut.js"></script>
 
     <script async src="js/showModals/login.js"></script>
@@ -281,5 +152,7 @@
     <script async src="js/showModals/changeEmogi.js"></script>
 
     <script async src="js/emogis/picker.js"></script>
+
+    <script src="js/listener/authComprove.js"></script>
   </body>
 </html>

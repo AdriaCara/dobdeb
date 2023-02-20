@@ -1,7 +1,4 @@
-const loginForm = document.getElementById("login-form");
-
-loginForm.addEventListener("submit", e => {
-    e.preventDefault();
+function login() {
     const email = document.getElementById("emailLogin").value;
     const password = document.getElementById("passwordLogin").value;
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -13,4 +10,5 @@ loginForm.addEventListener("submit", e => {
         // Handle errors
         getFeedback("Login", error, false);
     });
-});
+    deleteElementsModal();
+}

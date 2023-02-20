@@ -41,18 +41,19 @@ function savePost(title, text, nickname) {
 
 // Create alert
 function createAlert(message, rol) {
-    
-    db.collection("alerts").add({
-        rol: parseInt(rol),
-        emails: emails,
-        message: message,
-        time: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then((docRef) => {
-        getFeedback("Alert", "Alert created", true);
-    })
-    .catch((error) => {
-        getFeedback("Alert", error, false);
+    getAllEmailUsers().then(emails => {
+        db.collection("alerts").add({
+            rol: parseInt(rol),
+            emails: emails,
+            message: message,
+            time: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then((docRef) => {
+            getFeedback("Alert", "Alert created", true);
+        })
+        .catch((error) => {
+            getFeedback("Alert", error, false);
+        });
     });
 }
 // Create alert

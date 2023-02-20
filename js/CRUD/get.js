@@ -48,8 +48,7 @@ function getPosts(nickname) {
             postButtonEdit.classList.add('col-6');
             postButtonEdit.classList.add('mx-auto');
             postButtonEdit.type = 'submit';
-            postButtonEdit.setAttribute('data-bs-toggle', 'modal');
-            postButtonEdit.setAttribute('data-bs-target', '#editPostModal');
+            postButtonEdit.setAttribute('onclick', "changeModal('editAPost');");
             postButtonEdit.classList.add('marginBot');
             
             const postButtonDelte = document.createElement('button');
