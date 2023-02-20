@@ -14,7 +14,7 @@ function getPosts(nickname) {
             postTitle.textContent = `${post.title}`;
             postTitle.classList.add('card-header');
             postTitle.classList.add('bg-transparent');
-            postTitle.classList.add('border-success');
+            postTitle.classList.add('border-light');
             postTitle.classList.add('fs-2');
 
             const postDivBody = document.createElement('div');
@@ -96,10 +96,6 @@ function getPosts(nickname) {
             const postDate = post.time.toDate();
             const postDateFormat = postDate.getDate() + '/' + (postDate.getMonth() + 1) + '/' + postDate.getFullYear() + ' ' + postDate.getHours() + ':' + postDate.getMinutes() + ':' + postDate.getSeconds();
             postTime.textContent = postDateFormat;
-            postTime.classList.add('card-footer');
-            postTime.classList.add('bg-transparent');
-            postTime.classList.add('text-succes');
-            postTime.classList.add('text-muted');
 
             postDiv.appendChild(postDivBody);
             postDiv.appendChild(postTitle);
@@ -141,7 +137,6 @@ function getGallery() {
             if (user.rol == 2) {
                 const galleryCard = document.createElement('div');
                 galleryCard.classList.add('card');
-                galleryCard.classList.add('border-primary');
                 galleryCard.classList.add('m-5');
                 galleryCard.classList.add('bg-dark');
                 galleryCard.classList.add('text-light');
@@ -150,9 +145,9 @@ function getGallery() {
                 var path = user.photo;
                 galleryImage.setAttribute('alt', `User ${user.nickname} profile image`);
                 galleryImage.src = path;
+                galleryImage.setAttribute('width', '200');
+                galleryImage.setAttribute('height', '200');
                 galleryImage.classList.add('imgGallery');
-                galleryImage.classList.add("card-img-top");
-                galleryImage.style.maxWidth = '10rem'
     
                 const galleryCardBody = document.createElement('div');
                 galleryCardBody.classList.add('card-body');
@@ -160,7 +155,6 @@ function getGallery() {
                 const galleryTitle = document.createElement('h5');
                 galleryTitle.textContent = user.name;
                 galleryTitle.classList.add('card-title');
-                galleryTitle.classList.add('bg-transparent');
                 galleryTitle.classList.add('border-danger');
                 galleryTitle.classList.add('fs-2');
                 galleryTitle.style.fontFamily = 'papyrus';
@@ -181,9 +175,6 @@ function getGallery() {
                 const postDate = user.time.toDate();
                 const postDateFormat = postDate.getDate() + '/' + (postDate.getMonth() + 1) + '/' + postDate.getFullYear() + ' ' + postDate.getHours() + ':' + postDate.getMinutes() + ':' + postDate.getSeconds();
                 galleryTime.textContent = `Here since: ${postDateFormat}`;
-                galleryTime.classList.add('card-footer');
-                galleryTime.classList.add('bg-transparent');
-                galleryTime.classList.add('text-muted');
     
                 const galleryProfileButton = document.createElement('button');
                 galleryProfileButton.textContent = "Profile";
@@ -302,52 +293,45 @@ function getProfile(email) {
         snapshot.docs.forEach(doc => {
             const user = doc.data();
             if (user.email == email) {
-                const galleryDiv = document.createElement('div');
-                galleryDiv.classList.add('card');
-                galleryDiv.classList.add('border-danger');
-                galleryDiv.classList.add('m-5');
-                galleryDiv.classList.add('bg-dark');
-                galleryDiv.classList.add('text-light');
-                galleryDiv.style.Width = '30rem';
+                const profileDiv = document.createElement('div');
+                profileDiv.classList.add('card');
+                profileDiv.classList.add('m-5');
+                profileDiv.classList.add('bg-dark');
+                profileDiv.classList.add('text-light');
 
-                const galleryTitle = document.createElement('div');
-                galleryTitle.textContent = user.name;
-                galleryTitle.classList.add('card-header');
-                galleryTitle.classList.add('bg-transparent');
-                galleryTitle.classList.add('border-danger');
-                galleryTitle.classList.add('fs-2');
+                const profileTitle = document.createElement('div');
+                profileTitle.textContent = user.name;
+                profileTitle.classList.add('bg-transparent');
+                profileTitle.classList.add('fs-2');
                 if (user.rol==2) {
-                    const galleryVeryfied = document.createElement('p');
-                    galleryVeryfied.textContent = user.emogi;
-                    galleryTitle.appendChild(galleryVeryfied);
-                    galleryTitle.style.fontFamily = 'papyrus';
+                    const profileVeryfied = document.createElement('p');
+                    profileVeryfied.textContent = user.emogi;
+                    profileTitle.appendChild(profileVeryfied);
+                    profileTitle.style.fontFamily = 'papyrus';
                 }
 
-                const galleryImage = document.createElement('img');
+                const profileImage = document.createElement('img');
                 var path = user.photo;
-                galleryImage.src = path;
-                galleryImage.setAttribute('alt', `User ${user.nickname} profile image`);
-                galleryImage.classList.add("imgGallery");
-                galleryDiv.appendChild(galleryImage);
+                profileImage.src = path;
+                profileImage.setAttribute('width', '200');
+                profileImage.setAttribute('height', '200');
+                profileImage.setAttribute('alt', `User ${user.nickname} profile image`);
+                profileImage.classList.add("imgGallery");
+                profileDiv.appendChild(profileImage);
 
-                const galleryText = document.createElement('p');
-                galleryText.textContent = `${user.description}`;
-                galleryText.classList.add('card-text');
+                const profileText = document.createElement('p');
+                profileText.textContent = `${user.description}`;
 
-                const galleryTime = document.createElement('div');
+                const profileTime = document.createElement('div');
                 const postDate = user.time.toDate();
                 const postDateFormat = postDate.getDate() + '/' + (postDate.getMonth() + 1) + '/' + postDate.getFullYear() + ' ' + postDate.getHours() + ':' + postDate.getMinutes() + ':' + postDate.getSeconds();
-                galleryTime.textContent = `Here since: ${postDateFormat}`;
-                galleryTime.classList.add('card-footer');
-                galleryTime.classList.add('bg-transparent');
-                galleryTime.classList.add('text-danger');
-                galleryTime.classList.add('text-muted');
+                profileTime.textContent = `Here since: ${postDateFormat}`;
 
-                galleryDiv.appendChild(galleryTitle);
-                galleryDiv.appendChild(galleryText);
-                galleryDiv.appendChild(galleryTime);
+                profileDiv.appendChild(profileTitle);
+                profileDiv.appendChild(profileText);
+                profileDiv.appendChild(profileTime);
 
-                documentContent.appendChild(galleryDiv);
+                documentContent.appendChild(profileDiv);
                 getNicknameActualUser().then(nickname => {
                     titleDocument.textContent = nickname;
                     getPosts(nickname);
@@ -369,7 +353,7 @@ function getHome(actualUserConnected) {
 }
 // Get home
 
-// Get home most poster
+// Get home most poster and repeated
 function getHomeMostPoster(filter, actualUserConnected) {
     let count = 0;
     docUserTime.get()
@@ -396,7 +380,6 @@ function getHomeMostPoster(filter, actualUserConnected) {
                     homeImage.setAttribute('width', '200');
                     homeImage.setAttribute('height', '200');
                     homeImage.classList.add('imgGallery');
-                    homeImage.classList.add("card-img-top");
         
                     const homeCardBody = document.createElement('div');
                     homeCardBody.classList.add('card-body');
@@ -463,7 +446,7 @@ function getHomeMostPoster(filter, actualUserConnected) {
         console.log('Error getting documents', error);
     });
 }
-// Get home most poster
+// Get home most poster and repeated
 
 // Get nickname more poster 
 function getNicknameMostPoster() {
