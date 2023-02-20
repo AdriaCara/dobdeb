@@ -137,3 +137,19 @@ function updateRol(email, rol) {
     });
 }
 // Update rol
+
+// Update emogi
+function updateEmogi(email, emogi) {
+    // Actualizar la descripcion en el documento específico
+    const collectionRef = firebase.firestore().collection('users');
+    return collectionRef.where("email", "==", email).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.id es el ID del documento
+            collectionRef.doc(doc.id).update({emogi: emogi});
+            getFeedback("Emogi", "Emogi changed", true);
+
+            changeContent('myProfile');
+        });
+    });
+}
+// Update emogi

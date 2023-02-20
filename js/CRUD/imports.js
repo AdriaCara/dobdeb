@@ -8,4 +8,5 @@ const docUser = firebase.firestore().collection('users').orderBy("name", "asc");
 const docUserTime = firebase.firestore().collection('users').orderBy("time", "desc");
 const docAlert = firebase.firestore().collection('alerts').orderBy("time", "desc");
 const docForm = firebase.firestore().collection('forms').orderBy("time", "desc");
+const modalContent = document.getElementById('modal');
 let emails;
