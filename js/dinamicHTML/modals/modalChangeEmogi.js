@@ -11,10 +11,7 @@ function createModalChangeEmogi() {
     const emojiButton = document.createElement('button');
     const emojiList = document.createElement('div');
     const emojiOptions = [
-        String.fromCodePoint(0x1F600), String.fromCodePoint(0x1F601),
-        String.fromCodePoint(0x1F602), String.fromCodePoint(0x1F603),
-        String.fromCodePoint(0x1F604), String.fromCodePoint(0x1F605),
-        String.fromCodePoint(0x1F606), String.fromCodePoint(0x1F923)
+        '👾', '🦄', '🍺', '🚬', '🚗', '🌠', '✊🏿', '🏳️‍🌈', '🏳️‍⚧️', '🍀', '🌹'
     ];
       
     const emojiInput = document.createElement('input');
