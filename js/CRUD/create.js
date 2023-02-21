@@ -8,6 +8,7 @@ function createUser(nickname, nameUser, email) {
     email: email,
     photo: 'https://firebasestorage.googleapis.com/v0/b/dobdeb-411d9.appspot.com/o/gallery%2Fdefoult.png?alt=media&token=5d0239e7-74f5-4931-9d03-1579b50ced56',
     description: "Hey there, I'm using dobdeb!",
+    emogi: "👽",
     time: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then((docRef) => {
