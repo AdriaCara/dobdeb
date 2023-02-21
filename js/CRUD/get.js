@@ -48,7 +48,6 @@ function getPosts(nickname) {
             postButtonEdit.classList.add('col-6');
             postButtonEdit.classList.add('mx-auto');
             postButtonEdit.type = 'submit';
-            postButtonEdit.setAttribute('onclick', "changeModal('editAPost');");
             postButtonEdit.classList.add('marginBot');
             
             const postButtonDelte = document.createElement('button');
@@ -59,15 +58,13 @@ function getPosts(nickname) {
             postButtonDelte.classList.add('mx-auto');
             postButtonDelte.classList.add('marginBot');
             postButtonDelte.type = 'submit';
-            postButtonEdit.setAttribute('idPost', `${doc.id}`);
             postButtonEdit.id = "editPostButtonFunction";
             getRolActualUser().then(rol => {
                 if (rol==0) {
                     postButtonEdit.onclick = (event) => {
                         event.preventDefault();
-                        document.getElementById("titleEditPost").setAttribute("value", post.title);
-                        document.getElementById("textEditPost").textContent = post.text;
-                        document.getElementById("editPostNickname").textContent = post.nickname;
+                        deleteElementsModal();
+                        createModalChangePost(post.title, post.text, post.nickname, doc.id);
                     }
                     postButtonDelte.onclick = (event) => {
                         event.preventDefault();
@@ -78,9 +75,8 @@ function getPosts(nickname) {
                         if (nickname==post.nickname) {
                             postButtonEdit.onclick = (event) => {
                                 event.preventDefault();
-                                document.getElementById("titleEditPost").setAttribute("value", post.title);
-                                document.getElementById("textEditPost").textContent = post.text;
-                                document.getElementById("editPostNickname").textContent = post.nickname;
+                                deleteElementsModal();
+                                createModalChangePost(post.title, post.text, post.nickname, doc.id);
                             }
                             postButtonDelte.onclick = (event) => {
                                 event.preventDefault();

@@ -48,7 +48,7 @@ function createModalDoAPost() {
     const nicknameError = document.createElement('p');
     nicknameError.setAttribute('id', 'doAPostNickname');
     nicknameError.setAttribute('class', 'disable');
-    nicknameError.innerText = 'Error';
+    nicknameError.textContent= 'Error';
 
     const timeLabel = document.createElement('p');
     timeLabel.setAttribute('id', 'timeDoAPost');
