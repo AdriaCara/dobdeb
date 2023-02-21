@@ -2,22 +2,21 @@ function changeModal(modalShow) {
     deleteElementsModal();
 
     if (modalShow=='login') {
-
+        createModalLogin();
     } else if (modalShow=='register') {
-
-    } else if (modalShow=='logOut') {
-
+        createModalRegister();
     } else if (modalShow=='doAPost') {
-
-    } else if (modalShow=='editAPost') {
-
+        createModalDoAPost();
+        putInfoInModalDoAPost();
     } else if (modalShow=='changePhoto') {
-
+        createModalChangePhoto();
     } else if (modalShow=='changeDescription') {
-
+        createModalChangeDescription();
     } else if (modalShow=='changeEmogi') {
         createModalChangeEmogi();
+    } else if (modalShow=='newAlert') {
+        createModalNewAlert();
     } else {
-
+        //  Nothing
     }
 }

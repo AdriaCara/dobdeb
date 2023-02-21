@@ -1,6 +1,12 @@
-const doThePost = document.getElementById("doAPost-form");
-
 function doAPostFucntion() {
+    const titleDoAPost = document.getElementById("titleDoAPost").value;
+    const textDoAPost = document.getElementById("textDoAPost").value;
+    const nicknameDoAPost = document.getElementById("doAPostNickname").textContent;
+    savePost(titleDoAPost, textDoAPost, nicknameDoAPost);
+    deleteElementsModal();
+}
+
+function putInfoInModalDoAPost() {
     const userDoAPost = firebase.auth().currentUser;
     const emailDoAPost = userDoAPost.email;
 
@@ -15,11 +21,3 @@ function doAPostFucntion() {
         });
     });
 }
-
-doThePost.addEventListener("submit", e => {
-    e.preventDefault();
-    const titleDoAPost = document.getElementById("titleDoAPost").value;
-    const textDoAPost = document.getElementById("textDoAPost").value;
-    const nicknameDoAPost = document.getElementById("doAPostNickname").textContent;
-    savePost(titleDoAPost, textDoAPost, nicknameDoAPost);
-});

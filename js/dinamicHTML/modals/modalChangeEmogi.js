@@ -44,8 +44,7 @@ function createModalChangeEmogi() {
 
     closeButton.type = 'button';
     closeButton.className = 'btn-close';
-    closeButton.setAttribute('data-bs-dismiss', 'modal');
-    closeButton.setAttribute('aria-label', 'Close');
+    closeButton.setAttribute('onclick', "changeModal('');");
 
     emojiButton.type = 'button';
     emojiButton.id = 'emoji-button';
