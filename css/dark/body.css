@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #6C757D;
+    min-width: 20rem;
 }
 
 header {
